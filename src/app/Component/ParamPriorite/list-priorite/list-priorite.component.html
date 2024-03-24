@@ -9,8 +9,8 @@
   <h5 class="m-b-10">Priorité</h5>
   </div>
   <ul class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-  <li class="breadcrumb-item">Priorite Page</li>
+  <li class="breadcrumb-item"><a routerLink="/">Gestion Des Paraméters</a></li>
+  <li class="breadcrumb-item">Paramétre Priorite</li>
   </ul>
   </div>
   </div>
@@ -20,18 +20,28 @@
   
   <div class="row">
   
-  <div class="col-sm-12">
+   
   <div class="card">
   <div class="card-header">
   <h5>Priorité Liste</h5>
   <div style="margin-top: 20px;">
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-      <input type="text" class="form-control" placeholder="Recherche Dynamique" [(ngModel)]="searchText">
+    <div class="d-flex">
+      <div class="p-2 flex-grow-1">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Recherche Dynamique" [(ngModel)]="searchText">
+        </div>
+      </div>
+      <div class="p-2"></div>
+      <div class="p-2">
+        <button type="button" class="btn btn-outline-primary" (click)="AddPriorite()">
+          <i class="fa fa-plus"></i> Ajouter Priorité </button>
+      </div>
     </div>
+
     
-    <button type="button" class="btn btn-outline-primary" (click)="AddPriorite()">
-      <i class="fa fa-plus"></i> Ajouter Priorité </button>
+    
+   
 
   </div>
  
@@ -110,5 +120,5 @@
   </div>
   
   </div>
-  </div>
+ 
   
