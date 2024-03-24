@@ -29,7 +29,7 @@ export class PrioriteDetailComponent {
 
 
 
-   onSubmit() { 
+   onSubmit() {  
     this.submitted = true;
 this.clicked =true ; 
     if (this.repository.form.invalid) {
