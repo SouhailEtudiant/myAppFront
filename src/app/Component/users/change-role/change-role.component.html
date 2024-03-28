@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Changer Role</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <div class="container">
+          <form [formGroup]="repository.formChangeRole" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <p>
+              
+              <input  type="hidden" class="form-control" formControlName="username" name="username">
+                     
+            </p>
+          </div>
+         
+
+          <div class="form-group">
+            <label>Liste Role
+            </label>
+        <div>
+          <select class="form-control" formControlName="role" placeholder="role" [ngClass]="{ 'is-invalid': submitted && f['role'].errors }">
+            <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+              <div *ngIf="f['role'].errors['required']">Role Obligatoire</div>
+            </div>
+           
+            <option value="">-Select-</option>
+            <option *ngFor="let rl of repository.roles" [ngValue]="rl.name">
+              {{rl.name}}</option>
+          </select>
+          </div>
+        </div>
+
+          
+        
+      
+
+          
+        <div class="d-flex justify-content-center" style="margin-top: 20px;"> 
+            <button type="submit" class="btn btn-primary" style="margin-right: 20px;"  [disabled]="clicked">
+              
+                  <span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+             
+               Confirmer
+              </button> 
+            
+                        </div>
+
+        
+      </form>
+  </div>
+  </div>
+    
+    
+    
+    

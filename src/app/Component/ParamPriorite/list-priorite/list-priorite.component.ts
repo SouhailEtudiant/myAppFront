@@ -1,13 +1,13 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ParamPrioriteServiceService } from '../../../services/ParamPriorite/param-priorite-service.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PrioriteDetailComponent } from '../priorite-detail/priorite-detail.component';
 import { ParamPriorite } from '../../../models/ParamPriorite.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-list-priorite',
   standalone: false,
@@ -18,14 +18,22 @@ export class ListPrioriteComponent implements OnInit {
   PrioriteFilter: any = { libellePriorite: '' };
 
   constructor (public repository: ParamPrioriteServiceService,private modalActive: BsModalService,
-    private toastrService: ToastrService,private modalStatus: BsModalService, ) {}
+    private toastrService: ToastrService,private modalStatus: BsModalService,
+    private  cookieService: CookieService  , private router: Router, ) {}
   modalRef: BsModalRef | undefined;
   moedlrefStatus : BsModalRef | undefined;
   p: number = 1;
   searchText: string ="";
   clicked=false ;
+  cookieValue : string ="" ; 
   ngOnInit(): void {
-    this.repository.getPriorites();
+    this.cookieValue = this.cookieService.get('X-Access-Token');
+    if ( this.cookieValue=="")
+    {
+      this.router.navigate(["/login"]) ; 
+    }
+    else { this.repository.getPriorites();}
+   
   }
 
 
