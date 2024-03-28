@@ -1,0 +1,77 @@
+<div class="pc-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                  <div class="col-md-12">
+                      <div class="page-header-title">
+                          <h5 class="m-b-10">User Profile</h5>
+                      </div>
+                      <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../navigation/index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0)">User</a></li>
+                        <li class="breadcrumb-item" aria-current="page">User Profile</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ sample-page ] start -->
+            <div class="col-lg-12">
+                <div class="card user-card user-card-1">
+                    <div class="card-body pb-0">
+                        
+                        <div class="media user-about-block align-items-center mt-0 mb-3">
+                            <div class="position-relative d-inline-block">
+                                <img [src]="createImgPath(img)" class="img-radius img-fluid wid-80"  alt="User image">
+                                <div class="certificated-badge">
+                                    <i class="fas fa-certificate text-primary bg-icon"></i>
+                                    <i class="fas fa-check front-icon text-white"></i>
+                                </div>
+                            </div>
+                            <div class="media-body ms-3">
+                                <h6 class="mb-1">{{detail.username}}</h6>
+                                <p class="mb-0 text-muted">{{detail.role}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <span class="f-w-500"><i class="feather icon-mail m-r-10"></i>Email</span>
+                            <a href="/cdn-cgi/l/email-protection#95f1f0f8fad5e6f4f8e5f9f0" class="float-end text-body"><span class="__cf_email__" data-cfemail="94f0f1f9fbd4e7f5f9e4f8f1baf7fbf9">{{detail.email}}</span></a>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="f-w-500"><i class="feather icon-phone-call m-r-10"></i>Téléphone</span>
+                            <a href="#" class="float-end text-body">{{detail.phone}}</a>
+                        </li>
+                        <li class="list-group-item border-bottom-0">
+                            <span class="f-w-500"><i class="feather icon-map-pin m-r-10"></i>Role</span>
+                            <span class="float-end">{{detail.role}}</span>
+                        </li>
+                        <li class="list-group-item border-bottom-0">
+                            <span class="f-w-500"><i class="feather icon-map-pin m-r-10"></i>Nom</span>
+                            <span class="float-end">{{detail.nom}}</span>
+                        </li>
+                        <li class="list-group-item border-bottom-0">
+                            <span class="f-w-500"><i class="feather icon-map-pin m-r-10"></i>Prenom</span>
+                            <span class="float-end">{{detail.prenom}}</span>
+                        </li>
+                        <li class="list-group-item border-bottom-0">
+                            <span class="f-w-500"><i class="feather icon-map-pin m-r-10"></i>Mot de passe</span>
+                            <span class="float-end">***********</span>
+                        </li>
+                    </ul>
+                  
+                   
+                </div>            
+            </div>
+             
+            <!-- [ sample-page ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>

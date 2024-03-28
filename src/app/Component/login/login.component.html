@@ -1,0 +1,62 @@
+ 
+
+
+<div class="auth-wrapper auth-v3">
+	<div class="auth-content">
+		<div class="card">
+			<div class="row align-items-stretch text-center">
+				<div class="col-md-6 img-card-side">
+					<img src="/assets/images/log.jpg" alt="" class="img-fluid">
+					<div class="img-card-side-content">
+						<img src="/assets/images/wev.png" alt="" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card-body">
+                        <form [formGroup]="repository.form" (ngSubmit)="onSubmit()">
+							<div style="margin-bottom: 50px;"><h4 class="mb-3 f-w-600">Bienvenue <span class="text-primary">Portail</span></h4></div>
+							<p class="text-muted mb-4" style="margin-bottom: 50px !important;">Bienvenue à nouveau, veuillez vous connecter à un compte</p>
+                          
+						<div class="">
+							<div class="input-group mb-4">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                                <input type="text" class="form-control" name="username"  formControlName="username" placeholder="Nom d'utilisateur"
+                                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+                                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['username'].errors['required']">Nom d'utilisateur Obligatoire</div>
+                                  </div>
+							</div>
+							<div class="input-group mb-4">
+								<span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                                <input type="password" class="form-control" name="password"  formControlName="password" placeholder="Mot de passe"
+                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                 <div *ngIf="f['password'].errors['required']">Mot de passe Obligatoire</div>
+                                 </div>
+							</div>
+						</div>
+						 
+							
+							 
+							
+							<div class="d-flex flex-row-reverse">
+								<div class="p-2"><button type="submit" class="btn btn-primary" [disabled]="clicked">
+            
+									<span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+							   
+									Connexion
+								</button> </div>
+								<div class="p-2"></div>
+								<div class="p-2"><button class="btn btn-light-primary"(click)="clear()">Annuler</button></div>
+							  </div>
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+
+
+ 

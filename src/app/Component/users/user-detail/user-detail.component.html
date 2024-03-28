@@ -1,0 +1,137 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Ajouter Priorité</h4>
+    <!-- <button type="button" class="close pull-right" aria-label="Close" > -->
+        <button class="pull-right" style="border: none;">
+            <i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+          </button>
+    <!-- </button> -->
+    <!-- <div class="pull-right" >
+        <i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+    </div> -->
+  </div>
+  <div class="modal-body">
+  <div class="container">
+    <form [formGroup]="repository.form" (ngSubmit)="onSubmit()">
+          
+          <div class="row">
+            <div class="col-md-6">
+                    <div class="form-group">
+                          <label for="label">Nom Utilisateur</label>
+                          <input type="text"  class="form-control" name="username"   formControlName="username"
+                          [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+                          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                            <div *ngIf="f['username'].errors['required']">Nom Utilisateur Obligatoire</div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="label">Email</label>
+                        <input type="email"  class="form-control" name="email"   formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                          <div *ngIf="f['email'].errors['required']">Email Obligatoire</div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="label">Nom</label>
+                        <input type="text"  class="form-control" name="nomUser"   formControlName="nomUser"
+                        [ngClass]="{ 'is-invalid': submitted && f['nomUser'].errors }">
+                        <div *ngIf="submitted && f['nomUser'].errors" class="invalid-feedback">
+                          <div *ngIf="f['nomUser'].errors['required']">Nom Obligatoire</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="label">Prenom</label>
+                        <input type="text"  class="form-control" name="prenomUser"   formControlName="prenomUser"
+                        [ngClass]="{ 'is-invalid': submitted && f['prenomUser'].errors }">
+                        <div *ngIf="submitted && f['prenomUser'].errors" class="invalid-feedback">
+                          <div *ngIf="f['prenomUser'].errors['required']">prenom Obligatoire</div>
+                        </div>
+                    </div>
+                    </div>
+
+                  </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="label">Téléphone</label>
+                            <input type="text"  class="form-control" name="phone"   formControlName="phone"
+                            [ngClass]="{ 'is-invalid': submitted && f['phone'].errors }">
+                            <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+                              <div *ngIf="f['phone'].errors['required']">Téléphone Obligatoire</div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Role</label>
+                        <div>
+                          <select class="form-control" formControlName="role" placeholder="role" 
+                          [ngClass]="{ 'is-invalid': submitted && f['role'].errors }">
+                              <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+                                <div *ngIf="f['role'].errors['required']">Role Obligatoire</div>
+                              </div>
+                           
+                            <option value="">-Select-</option>
+                            <option *ngFor="let rl of repository.roles" [ngValue]="rl.normalizedName">
+                              {{rl.name}}</option>
+                          </select>
+                          </div>
+                        </div>
+
+
+                        </div>
+
+
+                    </div>  
+
+
+
+
+
+                    
+                    <div class="form-group">
+                        <label for="label">Mot de Passe</label>
+                        <input type="password"  class="form-control" name="password"   formControlName="password"
+                        [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                          <div *ngIf="f['password'].errors['required']">Mot de Passe Obligatoire</div>
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="form-group">
+                      <label for="label">Image</label>
+                      <app-upload class="form-control" name="imagePath"   formControlName="imagePath" (onUploadFinished)="uploadFinished($event)"
+                      [ngClass]="{ 'is-invalid': submitted && f['imagePath'].errors }" style="border: 0px !important; display: flex;"></app-upload>
+                      <div *ngIf="submitted && f['imagePath'].errors" class="invalid-feedback" style="display: flex; margin-left: 16px;">
+                        <div *ngIf="f['imagePath'].errors['required']">Image Obligatoire</div>
+                      </div>
+                  </div>
+                      <div class="d-flex justify-content-center" style="margin-top: 20px;"> 
+          <button type="submit" class="btn btn-primary" style="margin-right: 20px;"  [disabled]="clicked">
+            
+                <span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+           
+             Confirmer
+            </button> 
+          <button type="submit" class="btn btn-danger" (click)="clear()"  > Réinitialiser</button> 
+                      </div>
+      </form>
+  </div>
+  </div>
+    
+    
+    
+    

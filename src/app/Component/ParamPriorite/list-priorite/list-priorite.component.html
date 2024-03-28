@@ -9,7 +9,8 @@
   <h5 class="m-b-10">Priorité</h5>
   </div>
   <ul class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/">Gestion Des Paraméters</a></li>
+    <li class="breadcrumb-item"><a routerLink="/priorite">Home</a></li>
+  <li class="breadcrumb-item"> Gestion Des Paraméters </li>
   <li class="breadcrumb-item">Paramétre Priorite</li>
   </ul>
   </div>
@@ -22,7 +23,7 @@
   
    
   <div class="card">
-  <div class="card-header">
+  <div class="card-header"  style="border-color: transparent; margin-bottom: -50px;">
   <h5>Priorité Liste</h5>
   <div style="margin-top: 20px;">
     <div class="d-flex">
@@ -38,39 +39,33 @@
           <i class="fa fa-plus"></i> Ajouter Priorité </button>
       </div>
     </div>
-
-    
-    
-   
-
   </div>
  
   </div>
-  <div class="card-body">
+  <div class="card-body" >
     <table class="table table-striped">
-      <thead class="thead-light ">
-      <tr>
-        
-        <th>Libelle</th>
-        <th>Active</th>
-        <th>Actions</th>
+      <thead >
        
+        <tr>
+        <th scope="col" style="background: transparent;">Libelle</th>
+        <th scope="col"style="background: transparent;">Active</th>
+        <th scope="col" style="background: transparent;">Actions</th>
       </tr>
+      
     </thead>
     <tbody >
       <tr *ngFor="let pr of repository.priorities  | filter: searchText | paginate
       : {
           id: 'MicroservicePagination',
-          itemsPerPage: 3,
+          itemsPerPage: 4 ,
           currentPage: p,
           totalItems: repository.priorities.length
         }">
         
         <td>{{pr.libellePriorite}}</td>
-        <td *ngIf = "pr.isActive"> <div><label class="badge bg-success" style="width: 100px;" (click)="ModalStatus(templateChangeStatus)">Activer</label></div></td>
+        <td *ngIf = "pr.isActive"> <div><label class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"style="width: 100px;" (click)="ModalStatus(templateChangeStatus)">Activer</label></div></td>
         <td *ngIf = "! pr.isActive"><div><label class="badge bg-danger" style="width: 100px;"  (click)="ModalStatus(templateChangeStatus)">Desactiver</label></div></td>
         <!-- <td *ngIf = "! pr.isActive"><h4> <span class="badge rounded-pill text-bg-danger" (click)="ModalStatus(templateChangeStatus)">Desactiver</span></h4></td> -->
-        
         <td><button type="button" id="update" class="btn btn-success btn-sm" (click)="updatePriorite(pr)" style="margin-right: 10px;"><i class="fas fa-edit"></i> Modifier</button> 
          <button type="button" id="delete" class="btn btn-danger btn-sm" (click)="ConfirmModal(templateDelete)"><i class="fas fa-trash"></i> Supprimer</button></td>
          

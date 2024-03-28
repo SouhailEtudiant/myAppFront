@@ -14,6 +14,15 @@ import { FilterPipe } from './filter.pipe';
 import { BsModalRef, ModalModule ,BsModalService  } from 'ngx-bootstrap/modal';
 import { PrioriteDetailComponent } from './Component/ParamPriorite/priorite-detail/priorite-detail.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './Component/login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import { UploadComponent } from './Component/upload/upload.component';
+import { UsersComponent } from './Component/users/users.component';
+import { UserDetailComponent } from './Component/users/user-detail/user-detail.component';
+import { DashboardV1Component } from './Component/dashboard-v1/dashboard-v1.component';
+import { ChangeRoleComponent } from './Component/users/change-role/change-role.component';
+import { UpdatePasswordComponent } from './Component/users/update-password/update-password.component';
+import { UserProfileComponent } from './Component/users/user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +31,15 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     ListPrioriteComponent,
     FilterPipe,
-    PrioriteDetailComponent
+    PrioriteDetailComponent,
+    LoginComponent,
+    UploadComponent,    
+    UsersComponent,
+    UserDetailComponent,
+    DashboardV1Component,
+    ChangeRoleComponent,
+    UpdatePasswordComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +52,7 @@ import { ToastrModule } from 'ngx-toastr';
     ModalModule.forRoot(),
     ToastrModule.forRoot(), 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
