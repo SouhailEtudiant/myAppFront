@@ -23,6 +23,12 @@ import { DashboardV1Component } from './Component/dashboard-v1/dashboard-v1.comp
 import { ChangeRoleComponent } from './Component/users/change-role/change-role.component';
 import { UpdatePasswordComponent } from './Component/users/update-password/update-password.component';
 import { UserProfileComponent } from './Component/users/user-profile/user-profile.component';
+import { StatusListComponent } from './Component/ParamStatus/status-list/status-list.component';
+import { StatusDetailComponent } from './Component/ParamStatus/status-detail/status-detail.component';
+import { TypeListComponent } from './Component/ParamType/type-list/type-list.component';
+import { TypeDetailComponent } from './Component/ParamType/type-detail/type-detail.component';
+import { AddRoleComponent } from './Component/users/add-role/add-role.component';
+import { RoleListComponent } from './Component/users/role-list/role-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +45,13 @@ import { UserProfileComponent } from './Component/users/user-profile/user-profil
     DashboardV1Component,
     ChangeRoleComponent,
     UpdatePasswordComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    StatusListComponent,
+    StatusDetailComponent,
+    TypeListComponent,
+    TypeDetailComponent,
+    AddRoleComponent,
+    RoleListComponent
   ],
   imports: [
     BrowserModule,
