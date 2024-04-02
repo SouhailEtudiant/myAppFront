@@ -46,6 +46,7 @@ export class UserService {
 
 
   users: getuserwthrole[]= [];
+  gestionnaires: getuserwthrole[]= [];
   roles: roles[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
@@ -65,6 +66,13 @@ export class UserService {
     .subscribe({
       next: (jou: getuserwthrole[]) => {this.users = jou},
       
+    });
+  }
+
+  public getGestionnaire = () => {
+    return this.http.get<getuserwthrole[]>(this.createCompleteRoute("api/Authentification/GetGestionnaire", this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: getuserwthrole[]) => {this.gestionnaires = jou},
     });
   }
 

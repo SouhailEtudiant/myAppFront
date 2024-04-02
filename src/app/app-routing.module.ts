@@ -10,6 +10,7 @@ import { UserProfileComponent } from './Component/users/user-profile/user-profil
 import { StatusListComponent } from './Component/ParamStatus/status-list/status-list.component';
 import { TypeListComponent } from './Component/ParamType/type-list/type-list.component';
 import { RoleListComponent } from './Component/users/role-list/role-list.component';
+import { ProjetListComponent } from './Component/Projet/projet-list/projet-list.component';
 
 const routes: Routes = [
   {path : '' , title : 'Login Page' , component:LoginComponent} ,
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path : 'dashboard' , title : 'Dashboard Page' , component:DashboardV1Component} ,
   {path : 'role' , title : 'Role Page' , component:RoleListComponent} ,
   {path : 'login' , title : 'login Page' , component:LoginComponent} ,
+  {path : 'projet' , title : 'Projet Page' , component:ProjetListComponent} ,
   {path : 'profile' , title : 'Profile Utilisateur' , component:UserProfileComponent} ,
   ];
 
