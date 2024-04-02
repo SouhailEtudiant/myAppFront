@@ -29,6 +29,9 @@ import { TypeListComponent } from './Component/ParamType/type-list/type-list.com
 import { TypeDetailComponent } from './Component/ParamType/type-detail/type-detail.component';
 import { AddRoleComponent } from './Component/users/add-role/add-role.component';
 import { RoleListComponent } from './Component/users/role-list/role-list.component';
+import { ProjetListComponent } from './Component/Projet/projet-list/projet-list.component';
+import { ProjetDetailComponent } from './Component/Projet/projet-detail/projet-detail.component';
+import { AddGestionnaireComponent } from './Component/Projet/add-gestionnaire/add-gestionnaire.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,10 @@ import { RoleListComponent } from './Component/users/role-list/role-list.compone
     TypeListComponent,
     TypeDetailComponent,
     AddRoleComponent,
-    RoleListComponent
+    RoleListComponent,
+    ProjetListComponent,
+    ProjetDetailComponent,
+    AddGestionnaireComponent
   ],
   imports: [
     BrowserModule,
