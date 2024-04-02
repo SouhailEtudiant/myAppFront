@@ -8,6 +8,7 @@ import { registermodel } from '../../models/RegisterModel.model';
 import { roles } from '../../models/Roles.model';
 import { changeRole } from '../../models/ChangeRole.models';
 import { ChangePassword } from '../../models/ChangePass.models';
+import { AddRole } from '../../models/AddRole.models';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,10 @@ export class UserService {
     password: new FormControl("",[Validators.required]),
     token: new FormControl(""),
     username: new FormControl(""),
+  });
+
+  formAddRole: FormGroup = new FormGroup({
+    role: new FormControl("",[Validators.required]),
   });
 
 
@@ -73,6 +78,10 @@ export class UserService {
 
   public createuser = (route: string) => {
     return this.http.post<registermodel>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
+  }
+
+  public createRole = (route: string) => {
+    return this.http.post<AddRole>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.generateHeaders());
   }
 
   public changeRole = (route: string) => {
@@ -116,6 +125,15 @@ export class UserService {
       role:''
     });
 
+    
+
+  }
+
+  public resetFormAddRole() {
+
+    this.formAddRole.setValue({
+      role:''
+    });
   }
  
 
