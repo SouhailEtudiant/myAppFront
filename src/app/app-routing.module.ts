@@ -11,6 +11,9 @@ import { StatusListComponent } from './Component/ParamStatus/status-list/status-
 import { TypeListComponent } from './Component/ParamType/type-list/type-list.component';
 import { RoleListComponent } from './Component/users/role-list/role-list.component';
 import { ProjetListComponent } from './Component/Projet/projet-list/projet-list.component';
+import { ProjetListForUserComponent } from './Component/Projet/projet-list-for-user/projet-list-for-user.component';
+import { TacheListComponent } from './Component/Tache/tache-list/tache-list.component';
+import { BoardssComponent } from './Component/bardtest/boardss/boardss.component';
 
 const routes: Routes = [
   {path : '' , title : 'Login Page' , component:LoginComponent} ,
@@ -23,7 +26,10 @@ const routes: Routes = [
   {path : 'role' , title : 'Role Page' , component:RoleListComponent} ,
   {path : 'login' , title : 'login Page' , component:LoginComponent} ,
   {path : 'projet' , title : 'Projet Page' , component:ProjetListComponent} ,
+  {path : 'projetUser' , title : 'Projet Page' , component:ProjetListForUserComponent} ,
   {path : 'profile' , title : 'Profile Utilisateur' , component:UserProfileComponent} ,
+  {path : 'tache' , title : 'Liste Des Taches' , component:TacheListComponent} ,
+  {path : 'board' , title : 'Liste Des Taches' , component:BoardssComponent} ,
   ];
 
 @NgModule({

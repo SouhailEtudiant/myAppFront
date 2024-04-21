@@ -1,0 +1,51 @@
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+li {
+  display: inline-block;
+}
+.draggable {
+  list-style: none;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0 0 5px 2px rgba(22, 22, 22, 0.4);
+  display: inline-block;
+}
+
+.dndPlaceholder {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  box-shadow: 0 0 5px 2px rgba(22, 22, 22, 0.4);
+  border: 1px solid lime;
+}
+
+.draggable.dndDraggingSource {
+  /* display: none; */
+
+  opacity: 0.5;
+}
+
+.dropzone {
+  margin: 16px;
+  padding: 16px;
+  border: 1px red solid;
+}
+
+.dropzone.dndDragover {
+  border-color: green;
+}

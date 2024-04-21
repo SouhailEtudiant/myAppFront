@@ -32,6 +32,19 @@ import { RoleListComponent } from './Component/users/role-list/role-list.compone
 import { ProjetListComponent } from './Component/Projet/projet-list/projet-list.component';
 import { ProjetDetailComponent } from './Component/Projet/projet-detail/projet-detail.component';
 import { AddGestionnaireComponent } from './Component/Projet/add-gestionnaire/add-gestionnaire.component';
+import { ProjetListForUserComponent } from './Component/Projet/projet-list-for-user/projet-list-for-user.component';
+import { TacheDetailComponent } from './Component/Tache/tache-detail/tache-detail.component';
+import { TacheListComponent } from './Component/Tache/tache-list/tache-list.component';
+import { DndModule } from 'ngx-drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BoardssComponent } from './Component/bardtest/boardss/boardss.component';
+import { AvatarModule } from 'ngx-avatars';
+import { HeaderfrontComponent } from './headerFrontOffice/headerfront/headerfront.component';
+import { AddTacheComponent } from './Component/bardtest/add-tache/add-tache.component';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MomentModule } from 'ngx-moment';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +70,15 @@ import { AddGestionnaireComponent } from './Component/Projet/add-gestionnaire/ad
     RoleListComponent,
     ProjetListComponent,
     ProjetDetailComponent,
-    AddGestionnaireComponent
+    AddGestionnaireComponent,
+    ProjetListForUserComponent,
+    TacheListComponent,
+    TacheDetailComponent,
+   BoardssComponent,
+   HeaderfrontComponent,
+   AddTacheComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -69,8 +90,15 @@ import { AddGestionnaireComponent } from './Component/Projet/add-gestionnaire/ad
     ReactiveFormsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(), 
+    DndModule,
+    DragDropModule,
+    AvatarModule,
+    BsDatepickerModule.forRoot(),
+   
+    MomentModule,
+
   ],
-  providers: [CookieService],
+  providers: [CookieService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
