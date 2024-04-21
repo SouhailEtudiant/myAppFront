@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginServicesService } from './Component/login/login-services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { LoginServicesService } from './Component/login/login-services.service';
 })
 export class AppComponent {
   title = 'myAppFront';
-  constructor( public authservice : LoginServicesService){}
+  constructor( public authservice : LoginServicesService , public router: Router){}
 }

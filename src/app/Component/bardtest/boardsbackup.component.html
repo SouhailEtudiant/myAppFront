@@ -1,0 +1,19 @@
+<div class="pc-container" style="background-image: url(/assets/images/back.jpg);
+ background-repeat: no-repeat; 
+  background-size: cover; 
+  background-attachment: fixed;">
+    <div class="pcoded-content">
+
+	<div class="lists">
+        
+		<div class="list" *ngFor="let list of board">
+			<header>{{list.title}}</header>
+			<ul>
+				<li   *ngFor="let item of list.list" >
+					{{item.name}}</li>     
+			</ul>
+        
+			<footer>Add a card...</footer>
+		</div>
+	</div>
+    </div>

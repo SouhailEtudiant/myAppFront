@@ -1,0 +1,28 @@
+
+<div class="pc-container">
+    <div class="pcoded-content">
+		<div class="scrollmenu">	
+
+<ul
+  dndDropzone
+  dndEffectAllowed="move"
+  (dndDrop)="onDrop($event, repository.tache)"
+  class="dndList"
+>
+  <li dndPlaceholderRef class="dndPlaceholder"></li>
+
+  <li
+    *ngFor="let item of repository.tache"
+    [dndDraggable]="item"
+    dndEffectAllowed="move"
+    (dndMoved)="onDragged(item, repository.tache , 'move')"
+    class="draggable"
+  >
+    {{ item.tacheTitre }}
+	<br>
+	{{ item.tacheDescription }}
+  </li>
+</ul>
+		</div>
+	</div>
+</div>

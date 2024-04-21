@@ -1,0 +1,48 @@
+<div class="pc-container" style="background-image: url(/assets/images/2.jpg);
+
+  background-size: cover; 
+
+ " >
+  <!-- background-repeat: no-repeat;  -->
+    <div class="pcoded-content">
+		<div class="page-header">
+			<div class="page-block">
+			<div class="row align-items-center">
+			<div class="col-md-12">
+			<div class="page-header-title">
+			<h5 class="m-b-10">Gestion Des Taches</h5>
+			</div>
+			<ul class="breadcrumb">
+			  <li class="breadcrumb-item"><a routerLink="/priorite">Home</a></li>
+			<li class="breadcrumb-item"> Gestion Des Taches </li>
+			</ul>
+			</div>
+			</div>
+			</div>
+			</div>
+	<div class="lists">
+        
+		<div class="list" *ngFor="let list of repository.tacheBoard">
+			<header> 
+					{{list.labelStatus}} &nbsp; {{list.nombreTache}}
+			</header>
+			<ul>
+				<li *ngFor="let item of list.listTache"  >
+					{{item.tacheTitre}}
+					 
+			<ngx-avatars name="{{item.nom}} {{item.prenom}}" size=30   [style]="customStyle" title="{{item.nom}} {{item.prenom}}" > </ngx-avatars>
+		 
+ 
+				
+				 
+				</li>     
+			</ul>
+        
+			<footer> 
+				<button style="border-color: transparent; background-color: transparent;" (click)="AddTache()"><i class="fa fa-plus"> Ajouter une tache</i> </button>
+				
+			</footer>
+		</div>
+	</div>
+    </div>
+	 
