@@ -23,6 +23,7 @@ export class ProjetServceService {
   });
 
   projets: Projet[]= [];
+  projetsParUser: Projet[]= [];
 
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
@@ -42,6 +43,14 @@ export class ProjetServceService {
     return this.http.get<Projet[]>(this.createCompleteRoute("api/Projet", this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: Projet[]) => {this.projets = jou},
+      
+    });
+  }
+
+  public getProjetParIdUser = (id  : string) => {
+    return this.http.get<Projet[]>(this.createCompleteRoute("api/MembreProjet/GetProjetParUser?userId="+id, this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: Projet[]) => {this.projetsParUser = jou},
       
     });
   }

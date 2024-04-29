@@ -1,8 +1,13 @@
-<div class="pc-container" style="background-image: url(/assets/images/2.jpg);
+ 
+
+
+
+<div class="pc-container" style="background-image: url(/assets/images/6.jpg);
 
   background-size: cover; 
 
  " >
+
   <!-- background-repeat: no-repeat;  -->
     <div class="pcoded-content">
 		<div class="page-header">
@@ -22,27 +27,855 @@
 			</div>
 	<div class="lists">
         
-		<div class="list" *ngFor="let list of repository.tacheBoard">
+		<div class="list" *ngFor="let list of repository.tacheBoardProject">
 			<header> 
+				 
 					{{list.labelStatus}} &nbsp; {{list.nombreTache}}
 			</header>
 			<ul>
-				<li *ngFor="let item of list.listTache"  >
+				<li *ngFor="let item of list.listTache" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="getData(item.id)" >
 					{{item.tacheTitre}}
-					 
+					
 			<ngx-avatars name="{{item.nom}} {{item.prenom}}" size=30   [style]="customStyle" title="{{item.nom}} {{item.prenom}}" > </ngx-avatars>
-		 
  
-				
-				 
 				</li>     
 			</ul>
         
-			<footer> 
-				<button style="border-color: transparent; background-color: transparent;" (click)="AddTache()"><i class="fa fa-plus"> Ajouter une tache</i> </button>
-				
+			<footer> 	
+				<button style="border-color: transparent; background-color: transparent;" (click)="ConfirmModal(templateChangeStatus, list.idStatus)"><i class="fa fa-plus"> Ajouter une tache</i> </button>
 			</footer>
 		</div>
 	</div>
-    </div>
+<!-- -->
+	<div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width:600px;  background-color: #F6F5EC; overflow:auto"> 
+		 <!-- background-color: #f1f1f1; -->
+		<div *ngFor="let task of repository.tachebyID"> 
+		<div class="offcanvas-header">
+			<h4>
+				{{task.tacheTitre}}
+			</h4>
+			
+<!-- 		   
+			<div class="alert alert-secondary" role="alert" id="offcanvasRightLabel" style="width: 500px;" >
+				Cette tâche peut être visible par d’autres utilisateurs.
+			  </div>  -->
+		  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			
+		  <div class="card shadow p-3 mb-5 bg-white rounded">
+			<div class="card-body">
+				 <div  style="display: flex;
+				 justify-content: end !important; margin-bottom: 10px;">
+					<button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas" (click)="ConfirmModalSousTache(templateSousTache, task.id, task.idStatus)">Ajouter une Sous Tache</button>
+			 </div>
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Responsable
+					</div>
+					<div class="col-md-1">		
+					<ngx-avatars name="{{task.nom}} {{task.prenom}}" size=30   [style]="customStyle" title="{{task.nom}} {{task.prenom}}" > </ngx-avatars>
+					</div>
+					<div class="col-md-4" style="margin-top: 5px;">
+		
+						{{task.nom}} {{task.prenom}}
+					</div>
+				  </div>
+				  <div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Date Début
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div class="col-md-3" style="margin-top: 5px;">
+		
+						{{task.dateDebut}}
+					</div>
+				  </div>
+		
+				  <div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Date Fin
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div class="col-md-3" style="margin-top: 5px;">
+		
+						{{task.dateFin}}
+					</div>
+				  </div>
+				  <div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Priorité
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div *ngIf = "task.prioriteLabel=='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+						<label 
+						class="badge rounded-pill text-bg-warning">
+						{{task.prioriteLabel}}</label>
+					</div>
+					<div *ngIf = "task.prioriteLabel=='URGENT'" class="col-md-3" style="margin-top: 5px;">
+						<label
+						class="badge rounded-pill text-bg-danger">
+						{{task.prioriteLabel}}</label>
+					</div>
+					<div *ngIf = "task.prioriteLabel=='MOYENNE'" class="col-md-3" style="margin-top: 5px;">
+						<label
+						class="badge rounded-pill text-bg-success">
+						{{task.prioriteLabel}}</label>
+					</div>
+					<div *ngIf = "task.prioriteLabel=='BASSE'" class="col-md-3" style="margin-top: 5px;">
+						<label
+						class="badge rounded-pill text-bg-success">
+						{{task.prioriteLabel}}</label>
+					</div>
+					<div *ngIf = "task.prioriteLabel!='MOYENNE' && task.prioriteLabel!='BASSE'
+					&& task.prioriteLabel!='URGENT' && task.prioriteLabel!='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+						<label
+						class="badge rounded-pill text-bg-success">
+						{{task.prioriteLabel}}</label>
+					</div>
+				  </div>
+
+				  <div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Status
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div class="col-md-3" style="margin-top: 5px;">
+						<label style="cursor: pointer;"
+						class="badge rounded-pill text-bg-primary" (click)="openPopupUpdateStatus(task.id,task.idStatus,updatestatusModal)">
+						{{task.statusLabel}}</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Type
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div class="col-md-3" style="margin-top: 5px;">
+						<label 
+						class="badge rounded-pill text-bg-info" style="background-color: #E5D2B8 !important;">
+						{{task.typeLabel}}</label>
+					</div>
+				</div>
+					
+		       
+				 
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Description
+					</div>
+				</div>
+				 
+				<div class="card">
+					<div class="card-body">
+						{{task.tacheDescription}}
+					</div>
+				</div>
+			 <!-- Sous Tache List -->
+			 <div class="row" *ngIf="repository.SousTacheList.length > 0">
+				<div class="col-md-4" style="margin-top: 5px;">
+				Liste Sous Tache
+				</div>
+			</div>
+				<div class="card" *ngFor="let soustache of repository.SousTacheList" >
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-1">
+								<ngx-avatars name="{{soustache.nom}} {{soustache.prenom}}" size=30   [style]="customStyle" title="{{soustache.nom}} {{soustache.prenom}}" > </ngx-avatars>
+							</div>
+							<div class="col-md-10">
+								<p class="card-text" style="margin-top: 5px" >{{soustache.tacheTitre}}</p>
+							</div>
+							<div class="col-md-1"><i class="fas fa-arrow-circle-right" title="cliquer pour afficher les détails" style="color: rebeccapurple; cursor: pointer;"
+								data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight2" (click)="getData(soustache.id)"></i></div>
+						</div>
+						<!-- <div class="col-md-3">
+							<i class="fas fa-arrow-right" style="color: #7267EF;cursor: pointer;" title="Détail sous tache"></i> 
+
+						</div> -->
+
+
+						
+					</div>
+				</div>
+			
+<!------------------------------------------------------>
+				<div 
+				[ngStyle]="{'height': (repositoryComm.commListe.length>=4 ) ? 'calc(100vh - 300px)' : ((repositoryComm.commListe.length>4) ? '' : null) }"
+				
+				style="overflow: auto;" *ngIf="repositoryComm.commListe.length> 0"> 
+				 
+				  <h4>
+					  Commentaires 
+				  </h4> 
+				  <div class="card chat-card">
+				   
+					  <div class="card-body">
+						
+						  <div class="row m-b-20 received-chat"  *ngFor="let comm of repositoryComm.commListe">
+							  <div class="col-auto p-r-0">
+								  <img [src]="createImgPath(comm.userImage)" alt="user image" class="img-radius wid-40">
+							  </div>
+							  <div class="col">
+								  <div class="msg">
+									  <p class="m-b-0">{{comm.description}}</p>
+									  
+								  </div>
+								  <p class="text-muted m-b-0"><i class="fas fa-clock m-r-10"></i>{{comm.date}}</p>
+							  </div>
+						  </div>
+						
+					  </div>
+				  </div>
+			 
+				 
+			</div>
+				<form [formGroup]="repositoryComm.form" (ngSubmit)="onSubmitComm(task.id)">
+					<div class="form-group">
+					  <p>
+						
+						<input  type="hidden" class="form-control" formControlName="id" name="id">          
+					  </p>
+					</div>
+				<div class="right-icon-control m-t-15" >
+					<!-- <label style="margin-bottom: 5px;">Ajouter votre commentaire</label> -->
+					<div class="input">
+						<textarea type="text" class="form-control" name="description"   formControlName="description"
+						[ngClass]="{ 'is-invalid': submitted && fComm['description'].errors }"
+						 placeholder="Ajouter un commentaire" autocomplete="on"> </textarea>
+						 
+						<div *ngIf="submitted && fComm['description'].errors" class="invalid-feedback">
+						  <div *ngIf="fComm['description'].errors['required']">Description Obligatoire</div>
+						</div>
+					</div>
+					<button class="btn btn-primary" type="submit" style="margin-top: 5px;"><i class="fas fa-paper-plane"></i></button>
+
+				</div>
+				</form>
+			</div>
+		  </div>
+		</div>
+	</div>
+ </div>  
+
+ <div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight2" aria-labelledby="offcanvasRightLabel2" style="width:600px;  background-color: #F6F5EC; overflow:auto"> 
+	<!-- background-color: #f1f1f1; -->
+   <div *ngFor="let task of repository.tachebyID"> 
+   <div class="offcanvas-header">
+	   <h4>
+		   {{task.tacheTitre}}
+	   </h4>
+	   
+<!-- 		   
+	   <div class="alert alert-secondary" role="alert" id="offcanvasRightLabel" style="width: 500px;" >
+		   Cette tâche peut être visible par d’autres utilisateurs.
+		 </div>  -->
+	 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+	   
+	 <div class="card shadow p-3 mb-5 bg-white rounded">
+	   <div class="card-body">
+			
+		</div>
+		   <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Responsable
+			   </div>
+			   <div class="col-md-1">		
+			   <ngx-avatars name="{{task.nom}} {{task.prenom}}" size=30   [style]="customStyle" title="{{task.nom}} {{task.prenom}}" > </ngx-avatars>
+			   </div>
+			   <div class="col-md-4" style="margin-top: 5px;">
+   
+				   {{task.nom}} {{task.prenom}}
+			   </div>
+			 </div>
+			 <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Date Début
+			   </div>
+			   <div class="col-md-1">		
+			   </div>
+			   <div class="col-md-3" style="margin-top: 5px;">
+   
+				   {{task.dateDebut}}
+			   </div>
+			 </div>
+   
+			 <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Date Fin
+			   </div>
+			   <div class="col-md-1">		
+			   </div>
+			   <div class="col-md-3" style="margin-top: 5px;">
+   
+				   {{task.dateFin}}
+			   </div>
+			 </div>
+			 <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Priorité
+			   </div>
+			   <div class="col-md-1">		
+			   </div>
+			   <div *ngIf = "task.prioriteLabel=='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+				   <label 
+				   class="badge rounded-pill text-bg-warning">
+				   {{task.prioriteLabel}}</label>
+			   </div>
+			   <div *ngIf = "task.prioriteLabel=='URGENT'" class="col-md-3" style="margin-top: 5px;">
+				   <label
+				   class="badge rounded-pill text-bg-danger">
+				   {{task.prioriteLabel}}</label>
+			   </div>
+			   <div *ngIf = "task.prioriteLabel=='MOYENNE'" class="col-md-3" style="margin-top: 5px;">
+				   <label
+				   class="badge rounded-pill text-bg-success">
+				   {{task.prioriteLabel}}</label>
+			   </div>
+			   <div *ngIf = "task.prioriteLabel=='BASSE'" class="col-md-3" style="margin-top: 5px;">
+				   <label
+				   class="badge rounded-pill text-bg-success">
+				   {{task.prioriteLabel}}</label>
+			   </div>
+			   <div *ngIf = "task.prioriteLabel!='MOYENNE' && task.prioriteLabel!='BASSE'
+			   && task.prioriteLabel!='URGENT' && task.prioriteLabel!='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+				   <label
+				   class="badge rounded-pill text-bg-success">
+				   {{task.prioriteLabel}}</label>
+			   </div>
+			 </div>
+
+			 <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Status
+			   </div>
+			   <div class="col-md-1">		
+			   </div>
+			   <div class="col-md-3" style="margin-top: 5px;">
+				<label style="cursor: pointer;" title="Cliquer pour Modifier le status"
+				class="badge rounded-pill text-bg-primary" (click)="openPopupUpdateStatus(task.id,task.idStatus,updatestatusModal)">
+				   {{task.statusLabel}}</label>
+			   </div>
+		   </div>
+
+		   <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Type
+			   </div>
+			   <div class="col-md-1">		
+			   </div>
+			   <div class="col-md-3" style="margin-top: 5px;">
+				   <label 
+				   class="badge rounded-pill text-bg-info" style="background-color: #E5D2B8 !important;">
+				   {{task.typeLabel}}</label>
+			   </div>
+		   </div>
+			   
+		  
+			
+		   <div class="row">
+			   <div class="col-md-4" style="margin-top: 5px;">
+			   Description
+			   </div>
+		   </div>
+			
+		   <div class="card">
+			   <div class="card-body">
+				   {{task.tacheDescription}}
+			   </div>
+		   </div>
+		<!-- Sous Tache List -->
+		<div class="row" *ngIf="repository.SousTacheList.length > 0">
+		   <div class="col-md-4" style="margin-top: 5px;">
+		   Liste Sous Tache
+		   </div>
+	   </div>
+		   <div class="card" *ngFor="let soustache of repository.SousTacheList" >
+			   <div class="card-body">
+				   <div class="row">
+					   <div class="col-md-1">
+						   <ngx-avatars name="{{soustache.nom}} {{soustache.prenom}}" size=30   [style]="customStyle" title="{{soustache.nom}} {{soustache.prenom}}" > </ngx-avatars>
+					   </div>
+					   <div class="col-md-10">
+						   <p class="card-text" style="margin-top: 5px" >{{soustache.tacheTitre}}</p>
+					   </div>
+					   <div class="col-md-1"><i class="fas fa-arrow-circle-right" title="cliquer pour afficher les détails" style="color: rebeccapurple; cursor: pointer;"></i></div>
+				   </div>
+				   <!-- <div class="col-md-3">
+					   <i class="fas fa-arrow-right" style="color: #7267EF;cursor: pointer;" title="Détail sous tache"></i> 
+
+				   </div> -->
+
+
+				   
+			   </div>
+		   </div>
+	   
+<!------------------------------------------------------>
+		   <div 
+		   [ngStyle]="{'height': (repositoryComm.commListe.length>=4 ) ? 'calc(100vh - 300px)' : ((repositoryComm.commListe.length>4) ? '' : null) }"
+		   
+		   style="overflow: auto;" *ngIf="repositoryComm.commListe.length> 0"> 
+			
+			 <h4>
+				 Commentaires 
+			 </h4> 
+			 <div class="card chat-card">
+			  
+				 <div class="card-body">
+				   
+					 <div class="row m-b-20 received-chat"  *ngFor="let comm of repositoryComm.commListe">
+						 <div class="col-auto p-r-0">
+							 <img [src]="createImgPath(comm.userImage)" alt="user image" class="img-radius wid-40">
+						 </div>
+						 <div class="col">
+							 <div class="msg">
+								 <p class="m-b-0">{{comm.description}}</p>
+								 
+							 </div>
+							 <p class="text-muted m-b-0"><i class="fas fa-clock m-r-10"></i>{{comm.date}}</p>
+						 </div>
+					 </div>
+				   
+				 </div>
+			 </div>
+		
+			
+	   </div>
+		   <form [formGroup]="repositoryComm.form" (ngSubmit)="onSubmitComm(task.id)">
+			   <div class="form-group">
+				 <p>
+				   
+				   <input  type="hidden" class="form-control" formControlName="id" name="id">          
+				 </p>
+			   </div>
+		   <div class="right-icon-control m-t-15" >
+			   <!-- <label style="margin-bottom: 5px;">Ajouter votre commentaire</label> -->
+			   <div class="input">
+				   <textarea type="text" class="form-control" name="description"   formControlName="description"
+				   [ngClass]="{ 'is-invalid': submitted && fComm['description'].errors }"
+					placeholder="Ajouter un commentaire" autocomplete="on"> </textarea>
+					
+				   <div *ngIf="submitted && fComm['description'].errors" class="invalid-feedback">
+					 <div *ngIf="fComm['description'].errors['required']">Description Obligatoire</div>
+				   </div>
+			   </div>
+			   <button class="btn btn-primary" type="submit" style="margin-top: 5px;"><i class="fas fa-paper-plane"></i></button>
+
+		   </div>
+		   </form>
+	   </div>
+	 </div>
+   </div>
+</div>
+</div>  
+
+	<ng-template #templateChangeStatus>
+		<div class="modal-header">
+			<h4 class="modal-title pull-left">Ajouter Une Tache</h4>
+			<!-- <button type="button" class="close pull-right" aria-label="Close" > -->
+				<button class="pull-right" style="border: none;">
+					<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+				  </button>
+			<!-- </button> -->
+			<!-- <div class="pull-right" >
+				<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+			</div> -->
+		  </div>
+		  <div class="modal-body">
+		  <div class="container">
+			<form [formGroup]="repository.form" (ngSubmit)="onSubmit()">
+				  <div class="form-group">
+					<p>
+					  
+					  <input  type="hidden" class="form-control" formControlName="id" name="id">          
+					</p>
+				  </div>
+				  
+							<div class="form-group">
+								  <label for="label">Titre</label>
+								  <input type="text"  class="form-control" name="tacheTitre"   formControlName="tacheTitre"
+								  [ngClass]="{ 'is-invalid': submitted && f['tacheTitre'].errors }">
+								  <div *ngIf="submitted && f['tacheTitre'].errors" class="invalid-feedback">
+									<div *ngIf="f['tacheTitre'].errors['required']">Titre Obligatoire</div>
+								  </div>
+		
+							  </div>
+		
+							  <div class="form-group">
+								<label for="label">Description</label>
+								<textarea  type="text"  class="form-control" name="tacheDescription"   formControlName="tacheDescription"
+								[ngClass]="{ 'is-invalid': submitted && f['tacheDescription'].errors }"> </textarea>
+								<div *ngIf="submitted && f['tacheDescription'].errors" class="invalid-feedback">
+								  <div *ngIf="f['tacheDescription'].errors['required']">Description Obligatoire</div>
+								</div>
+		
+							</div>
+		
+		
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="label">Charge Estimee</label>
+										<input type="text"  class="form-control" name="chargeEstime"   formControlName="chargeEstime"
+										[ngClass]="{ 'is-invalid': submitted && f['chargeEstime'].errors }">
+										<div *ngIf="submitted && f['chargeEstime'].errors" class="invalid-feedback">
+										  <div *ngIf="f['chargeEstime'].errors['required']">Charge Obligatoire</div>
+										</div>
+									</div>
+								</div>
+		
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Type Tache</label>
+									<div>
+									  <select class="form-control" formControlName="idType" placeholder="idType" 
+									  [ngClass]="{ 'is-invalid': submitted && f['idType'].errors }">
+										  <div *ngIf="submitted && f['idType'].errors" class="invalid-feedback">
+											<div *ngIf="f['idType'].errors['required']">Type Obligatoire</div>
+										  </div>
+									   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryType.types" [ngValue]="rl.id">
+										   {{rl.libelleType}}</option>
+									  </select>
+									  </div>
+									</div>
+				
+				
+									<!-- <div class="form-group">
+										<label for="label">Charge Réele</label>
+										<input type="text"  class="form-control" name="chargeReele"   formControlName="chargeReele"
+										[ngClass]="{ 'is-invalid': submitted && f['chargeReele'].errors }">
+										<div *ngIf="submitted && f['chargeReele'].errors" class="invalid-feedback">
+										  <div *ngIf="f['chargeReele'].errors['required']">Charge Obligatoire</div>
+										</div>
+									</div> -->
+
+								</div>
+							</div>
+		
+		
+		
+		
+							
+							<div class="row">
+								<div class="col-md-6">
+								  <div class="form-group">
+									<label for="label">Date Début</label>
+									<input type="text"
+									placeholder="Select Date"
+									class="form-control"
+									formControlName="dateDebut"
+									value="theme-dark-blue"
+									#dp="bsDatepicker"
+									bsDatepicker
+									[bsConfig]="{ adaptivePosition: true,dateInputFormat: 'YYYY-MM-DD' }"
+								 
+									[ngClass]="{ 'is-invalid': submitted && f['dateDebut'].errors }">
+									<div *ngIf="submitted && f['dateDebut'].errors" class="invalid-feedback">
+									  <div *ngIf="f['dateDebut'].errors['required']">Date Obligatoire</div>
+									</div>
+								</div>
+								   
+								</div>
+		
+								<div class="col-md-6">
+								  <div class="form-group">
+									<label for="label">Date Fin</label>
+									<input type="text"
+									placeholder="Select Date"
+									class="form-control"
+									formControlName="dateFin"
+									bsDatepicker
+									[bsConfig]="{ adaptivePosition: true,dateInputFormat: 'YYYY-MM-DD' }"
+									value="theme-dark-blue"
+									[ngClass]="{ 'is-invalid': submitted && f['dateFin'].errors }">
+									<div *ngIf="submitted && f['dateFin'].errors" class="invalid-feedback">
+									  <div *ngIf="f['dateFin'].errors['required']">Date Obligatoire</div>
+									</div>
+								</div>
+								</div>
+							</div>
+		
+		
+		
+							
+						   
+								
+							   
+		
+								
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Priorité </label>
+									<div>
+									  <select class="form-control" formControlName="idPriorite" placeholder="idPriorite" 
+									  [ngClass]="{ 'is-invalid': submitted && f['idPriorite'].errors }">
+										  <div *ngIf="submitted && f['idPriorite'].errors" class="invalid-feedback">
+											<div *ngIf="f['idPriorite'].errors['required']">Priorité Obligatoire</div>
+										  </div>
+									   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryPriorite.priorities" [ngValue]="rl.id">
+										   {{rl.libellePriorite}}</option>
+									  </select>
+									  </div>
+									</div>
+								</div>
+		
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Affecté à </label>
+									<div>
+									  <select class="form-control" formControlName="idUtilisateur" placeholder="idUtilisateur" 
+									  [ngClass]="{ 'is-invalid': submitted && f['idUtilisateur'].errors }">
+										  <div *ngIf="submitted && f['idUtilisateur'].errors" class="invalid-feedback">
+											<div *ngIf="f['idUtilisateur'].errors['required']">Utilisateur Obligatoire</div>
+										  </div>
+									   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryUser.users" [ngValue]="rl.userId">
+										  {{rl.nom}} {{rl.prenom}}</option>
+									  </select>
+									  </div>
+									</div>
+								</div>
+		
+							</div>
+		
+							  <div class="d-flex justify-content-center" style="margin-top: 20px;"> 
+				  <button type="submit" class="btn btn-primary" style="margin-right: 20px;"  [disabled]="clicked">
+					
+						<span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+				   
+					 Confirmer
+					</button> 
+				  <button type="submit" class="btn btn-danger"  (click)="clear()" > Réinitialiser</button> 
+							  </div>
+			  </form>
+		  </div>
+		  </div>
+			
+	  </ng-template>
+
+
+
+	  <ng-template #templateSousTache>
+		<div class="modal-header">
+			<h4 class="modal-title pull-left">Ajouter Une Sous Tache</h4>
+			<!-- <button type="button" class="close pull-right" aria-label="Close" > -->
+				<button class="pull-right" style="border: none;">
+					<i class="fa fa-window-close" aria-hidden="true" (click)="modalRefSousTache.hide()"></i>
+				  </button>
+			<!-- </button> -->
+			<!-- <div class="pull-right" >
+				<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+			</div> -->
+		  </div>
+		  <div class="modal-body">
+		  <div class="container">
+			<form [formGroup]="repository.formSousTache" (ngSubmit)="onSubmitSousTache()">
+				  <div class="form-group">
+					<p>
+					  
+					  <input  type="hidden" class="form-control" formControlName="id" name="id">          
+					</p>
+				  </div>
+				  
+							<div class="form-group">
+								  <label for="label">Titre</label>
+								  <input type="text"  class="form-control" name="tacheTitre"   formControlName="tacheTitre"
+								  [ngClass]="{ 'is-invalid': submitted && fSousTache['tacheTitre'].errors }">
+								  <div *ngIf="submitted && fSousTache['tacheTitre'].errors" class="invalid-feedback">
+									<div *ngIf="fSousTache['tacheTitre'].errors['required']">Titre Obligatoire</div>
+								  </div>
+		
+							  </div>
+		
+							  <div class="form-group">
+								<label for="label">Description</label>
+								<textarea  type="text"  class="form-control" name="tacheDescription"   formControlName="tacheDescription"
+								[ngClass]="{ 'is-invalid': submitted && fSousTache['tacheDescription'].errors }"> </textarea>
+								<div *ngIf="submitted && fSousTache['tacheDescription'].errors" class="invalid-feedback">
+								  <div *ngIf="fSousTache['tacheDescription'].errors['required']">Description Obligatoire</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="label">Charge Estimee</label>
+										<input type="text"  class="form-control" name="chargeEstime"   formControlName="chargeEstime"
+										[ngClass]="{ 'is-invalid': submitted && fSousTache['chargeEstime'].errors }">
+										<div *ngIf="submitted && fSousTache['chargeEstime'].errors" class="invalid-feedback">
+										  <div *ngIf="fSousTache['chargeEstime'].errors['required']">Charge Obligatoire</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Type Tache</label>
+									<div>
+									  <select class="form-control" formControlName="idType" placeholder="idType" 
+									  [ngClass]="{ 'is-invalid': submitted && fSousTache['idType'].errors }">
+										  <div *ngIf="submitted && fSousTache['idType'].errors" class="invalid-feedback">
+											<div *ngIf="fSousTache['idType'].errors['required']">Type Obligatoire</div>
+										  </div>	   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryType.types" [ngValue]="rl.id">
+										   {{rl.libelleType}}</option>
+									  </select>
+									  </div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+								  <div class="form-group">
+									<label for="label">Date Début</label>
+									<input type="text"
+									placeholder="Select Date"
+									class="form-control"
+									formControlName="dateDebut"
+									value="theme-dark-blue"
+									#dp="bsDatepicker"
+									bsDatepicker
+									[bsConfig]="{ adaptivePosition: true,dateInputFormat: 'YYYY-MM-DD' }"
+								 
+									[ngClass]="{ 'is-invalid': submitted && fSousTache['dateDebut'].errors }">
+									<div *ngIf="submitted && fSousTache['dateDebut'].errors" class="invalid-feedback">
+									  <div *ngIf="fSousTache['dateDebut'].errors['required']">Date Obligatoire</div>
+									</div>
+								</div>
+								   
+								</div>
+		
+								<div class="col-md-6">
+								  <div class="form-group">
+									<label for="label">Date Fin</label>
+									<input type="text"
+									placeholder="Select Date"
+									class="form-control"
+									formControlName="dateFin"
+									bsDatepicker
+									[bsConfig]="{ adaptivePosition: true,dateInputFormat: 'YYYY-MM-DD' }"
+									value="theme-dark-blue"
+									[ngClass]="{ 'is-invalid': submitted && fSousTache['dateFin'].errors }">
+									<div *ngIf="submitted && fSousTache['dateFin'].errors" class="invalid-feedback">
+									  <div *ngIf="fSousTache['dateFin'].errors['required']">Date Obligatoire</div>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Priorité </label>
+									<div>
+									  <select class="form-control" formControlName="idPriorite" placeholder="idPriorite" 
+									  [ngClass]="{ 'is-invalid': submitted && fSousTache['idPriorite'].errors }">
+										  <div *ngIf="submitted && fSousTache['idPriorite'].errors" class="invalid-feedback">
+											<div *ngIf="fSousTache['idPriorite'].errors['required']">Priorité Obligatoire</div>
+										  </div>
+									   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryPriorite.priorities" [ngValue]="rl.id">
+										   {{rl.libellePriorite}}</option>
+									  </select>
+									  </div>
+									</div>
+								</div>
+		
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Affecté à </label>
+									<div>
+									  <select class="form-control" formControlName="idUtilisateur" placeholder="idUtilisateur" 
+									  [ngClass]="{ 'is-invalid': submitted && fSousTache['idUtilisateur'].errors }">
+										  <div *ngIf="submitted && fSousTache['idUtilisateur'].errors" class="invalid-feedback">
+											<div *ngIf="fSousTache['idUtilisateur'].errors['required']">Utilisateur Obligatoire</div>
+										  </div>
+									   
+										<option value="">-Select-</option>
+										<option *ngFor="let rl of repositoryUser.users" [ngValue]="rl.userId">
+										  {{rl.nom}} {{rl.prenom}}</option>
+									  </select>
+									  </div>
+									</div>
+								</div>
+		
+							</div>
+		
+							  <div class="d-flex justify-content-center" style="margin-top: 20px;"> 
+				  <button type="submit" class="btn btn-primary" style="margin-right: 20px;"  [disabled]="clicked">
+					
+						<span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+				   
+					 Confirmer
+					</button> 
+				  <button type="submit" class="btn btn-danger"  (click)="clear()" > Réinitialiser</button> 
+							  </div>
+			  </form>
+		  </div>
+		  </div>
+			
+	  </ng-template>
+
+	  <ng-template #updatestatusModal>
+		<div class="modal-header">
+			<h4 class="modal-title pull-left">Modifier Status</h4>
+			<!-- <button type="button" class="close pull-right" aria-label="Close" > -->
+				<button class="pull-right" style="border: none;">
+					<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+				  </button>
+			<!-- </button> -->
+			<!-- <div class="pull-right" >
+				<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+			</div> -->
+		  </div>
+		  <div class="modal-body">
+		  <div class="container">
+			<form [formGroup]="repository.formUpdateStatus" (ngSubmit)="onSubmitUpdateStatus()">
+				  <div class="form-group">
+					<p>
+					  
+					  <input  type="hidden" class="form-control" formControlName="id" name="id">          
+					</p>
+				  </div>
+								
+									<div class="form-group">
+										<label>Status</label>
+									<div>
+									  <select class="form-control" formControlName="idStatus" placeholder="idStatus">
+										<option value=0>-Select-</option>
+										<option *ngFor="let rl of repositoryStatus.status" [ngValue]="rl.id">
+										   {{rl.libelleStatus}}</option>
+									  </select>
+									  </div>
+									</div>
+								
+							  <div class="d-flex justify-content-center" style="margin-top: 20px;"> 
+				  <button type="submit" class="btn btn-primary" style="margin-right: 20px;">
+					
+						<span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+					 Confirmer
+					</button> 
+							  </div>
+			  </form>
+		  </div>
+		  </div>
+	  </ng-template>
+
+
+
+	   
 	 

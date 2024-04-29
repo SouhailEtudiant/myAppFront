@@ -54,6 +54,7 @@ export class LoginServicesService {
     localStorage.removeItem('prenom') ; 
     localStorage.removeItem('role') ; 
     localStorage.removeItem('img') ; 
+    localStorage.removeItem('id') ; 
     this.cookieService.delete('X-Access-Token', '/');
     this.router.navigate(["/login"]) ;
   }

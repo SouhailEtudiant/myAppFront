@@ -43,7 +43,7 @@
  
   </div>
   <div class="card-body" >
-    <table class="table table-striped">
+    <table class="table table-hover">
       <thead >
        
         <tr>
@@ -63,11 +63,12 @@
         }">
         
         <td>{{pr.libellePriorite}}</td>
-        <td *ngIf = "pr.isActive"> <div><label class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"style="width: 100px;" (click)="ModalStatus(templateChangeStatus)">Activer</label></div></td>
-        <td *ngIf = "! pr.isActive"><div><label class="badge bg-danger" style="width: 100px;"  (click)="ModalStatus(templateChangeStatus)">Desactiver</label></div></td>
+        <td *ngIf = "pr.isActive"> <div><label class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"style="width: 100px;border-radius: 25px;" (click)="ModalStatus(templateChangeStatus)">Activer</label></div></td>
+        <td *ngIf = "! pr.isActive"><div><label class="badge bg-danger" style="width: 100px;border-radius: 25px;"  (click)="ModalStatus(templateChangeStatus)">Desactiver</label></div></td>
         <!-- <td *ngIf = "! pr.isActive"><h4> <span class="badge rounded-pill text-bg-danger" (click)="ModalStatus(templateChangeStatus)">Desactiver</span></h4></td> -->
-        <td><button type="button" id="update" class="btn btn-success btn-sm" (click)="updatePriorite(pr)" style="margin-right: 10px;"><i class="fas fa-edit"></i> Modifier</button> 
-         <button type="button" id="delete" class="btn btn-danger btn-sm" (click)="ConfirmModal(templateDelete)"><i class="fas fa-trash"></i> Supprimer</button></td>
+        <td>
+          <button type="button" id="update" class="btn btn-outline-success btn-sm" (click)="updatePriorite(pr)" style="margin-right: 10px;border-radius: 25px;"><i class="fas fa-edit"></i> Modifier</button> 
+         <button type="button" id="delete" class="btn btn-outline-danger btn-sm" style="border-radius: 25px;" (click)="ConfirmModal(templateDelete)"><i class="fas fa-trash"></i> Supprimer</button></td>
          
 <!-- Modal Delete -->
         <ng-template #templateDelete>

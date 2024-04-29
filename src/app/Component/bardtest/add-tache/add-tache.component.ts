@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 import { TacheServicesService } from '../../../services/Tache/tache-services.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,7 +8,7 @@ import { ParamStatusService } from '../../../services/ParamStatus/param-status.s
 import { ParamTypeService } from '../../../services/ParamType/param-type.service';
 import { ProjetServceService } from '../../../services/Projet/projet-servce.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { Tache } from '../../../models/Tache.models';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -20,7 +20,9 @@ import { DatePipe } from '@angular/common';
   templateUrl: './add-tache.component.html',
   styleUrl: './add-tache.component.css'
 })
+
 export class AddTacheComponent implements OnInit {
+
   constructor (public repository: TacheServicesService,
      private modalService: BsModalService,
     public   modalRef: BsModalRef,
@@ -32,10 +34,12 @@ export class AddTacheComponent implements OnInit {
     public repositoryProjet: ProjetServceService,
     private router: Router, 
      private toastrService: ToastrService,
-     private datePipe: DatePipe, ) {}
+     private datePipe: DatePipe,
+     private route: ActivatedRoute ) {}
     cookieValue : string ="" ; 
     datDebut : Date | undefined;
     datFin : Date | undefined;
+
   ngOnInit(): void {
     this.cookieValue = this.cookieService.get('X-Access-Token');
     if ( this.cookieValue=="")
@@ -63,7 +67,9 @@ export class AddTacheComponent implements OnInit {
 
 
  onSubmit() {  
-  this.repository.form.controls['idProjet'].setValue(1) ;
+  //this.repository.form.controls['idProjet'].setValue(this.id) ;
+
+  
   this.submitted = true;
 this.clicked =true ; 
   if (this.repository.form.invalid) {
@@ -71,7 +77,7 @@ this.clicked =true ;
     return;
   }
   else {
-  
+    
       this.insertRecord();
     
   }
@@ -90,7 +96,7 @@ console.log(this.repository.form.controls['dateDebut'].value)
  .subscribe({
    next: (pr : Tache) => {
      this.toastrService.success("Ajouter","Tache ajouter avec succée") ;
-     this.repository.getTacheBoard();
+     this.repository.getTacheBoardParProjet(Number(this.route.snapshot.paramMap.get('id')));
      this.modalRef.hide();
      
    },

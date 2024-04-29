@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServicesService } from '../Component/login/login-services.service';
+import { ProjetServceService } from '../services/Projet/projet-servce.service';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +12,17 @@ export class HeaderComponent  implements OnInit {
   prenom : string  | null  =""
   role : string | null  =""
   img : string =""
-  constructor(public authservice: LoginServicesService,){}
+  id : string  | null  ="" ;
+  constructor(public authservice: LoginServicesService, public repositoryProject : ProjetServceService){}
   ngOnInit(): void {
     this.name= localStorage.getItem('nom')  ; 
     this.prenom= localStorage.getItem('prenom')  ; 
     this.role= localStorage.getItem('role')  ; 
-     
+    this.id = localStorage.getItem('id') ;
+    if (this. id === null)
+      {}
+    else {this.repositoryProject.getProjetParIdUser(this.id); 
+    }
 
   }
 

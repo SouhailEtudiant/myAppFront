@@ -1,0 +1,26 @@
+<!-- (click)="eventClick($event)" -->
+<div class="pc-container">
+  <div class="pcoded-content">
+   
+    <div class="card">
+    <full-calendar [options]="calendarOptions" style="margin: 20px;"
+    [deepChangeDetection]="true"
+
+ 
+ 
+    ></full-calendar>
+  </div>
+</div>
+</div>
+
+
+<button class="btn btn-primary" id="show" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="display: none;"></button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>

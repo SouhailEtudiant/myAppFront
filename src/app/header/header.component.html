@@ -95,8 +95,12 @@
                     <li class="pc-item"><a routerLink="/users" class="pc-link "><span class="pc-micon"><i class="fas fa-users"></i></span><span class="pc-mtext">Gestion des Utilisateurs</span></a></li>
                     <li class="pc-item"><a routerLink="/role" class="pc-link "><span class="pc-micon"><i class="fas fa-user-tag"></i></span><span class="pc-mtext">Gestion des Role</span></a></li>
                     <li class="pc-item"><a routerLink="/projet" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">storefront</i></span><span class="pc-mtext">Gestion Des Projet</span></a></li>
-                    <li class="pc-item"><a routerLink="/board" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">storefront</i></span><span class="pc-mtext">Tache</span></a></li>
+                    <li class="pc-item"><a routerLink="/imputation" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">storefront</i></span><span class="pc-mtext">imputation</span></a></li>
 
+                    <a class="pc-link"><span class="pc-micon"><i class="fas fa-cog"></i></span><span class="pc-mtext">Gestion Des paraméters</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                    <ul class="pc-submenu" *ngFor="let item of repositoryProject.projetsParUser">
+                        <li class="pc-item"><a routerLink="/board/{{item.id}}" class="pc-link "><span class="pc-micon"><i class="fas fa-greater-than-equal"></i></span><span class="pc-mtext">{{item.projetTitre}}</span></a></li>
+                    </ul>
 
             </ul>
         </div>
