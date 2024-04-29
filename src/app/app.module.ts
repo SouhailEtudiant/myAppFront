@@ -45,6 +45,9 @@ import { AddTacheComponent } from './Component/bardtest/add-tache/add-tache.comp
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { MomentModule } from 'ngx-moment';
 import { DatePipe } from '@angular/common';
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
+import { ImputationComponent } from './Component/imputation/imputation.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,8 +79,8 @@ import { DatePipe } from '@angular/common';
     TacheDetailComponent,
    BoardssComponent,
    HeaderfrontComponent,
-   AddTacheComponent
-
+   AddTacheComponent,
+   ImputationComponent
 
   ],
   imports: [
@@ -94,7 +97,7 @@ import { DatePipe } from '@angular/common';
     DragDropModule,
     AvatarModule,
     BsDatepickerModule.forRoot(),
-   
+    FullCalendarModule ,
     MomentModule,
 
   ],

@@ -14,6 +14,7 @@ import { ProjetListComponent } from './Component/Projet/projet-list/projet-list.
 import { ProjetListForUserComponent } from './Component/Projet/projet-list-for-user/projet-list-for-user.component';
 import { TacheListComponent } from './Component/Tache/tache-list/tache-list.component';
 import { BoardssComponent } from './Component/bardtest/boardss/boardss.component';
+import { ImputationComponent } from './Component/imputation/imputation.component';
 
 const routes: Routes = [
   {path : '' , title : 'Login Page' , component:LoginComponent} ,
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path : 'projetUser' , title : 'Projet Page' , component:ProjetListForUserComponent} ,
   {path : 'profile' , title : 'Profile Utilisateur' , component:UserProfileComponent} ,
   {path : 'tache' , title : 'Liste Des Taches' , component:TacheListComponent} ,
-  {path : 'board' , title : 'Liste Des Taches' , component:BoardssComponent} ,
+  {path : 'imputation' , title : 'Liste Des Imputation' , component:ImputationComponent} ,
+  {path : 'board/:id' , title : 'Liste Des Taches' , component:BoardssComponent} ,
   ];
 
 @NgModule({

@@ -22,7 +22,8 @@ import {
   ɵɵlistener,
   ɵɵloadQuery,
   ɵɵqueryRefresh
-} from "./chunk-6AXZGSSF.js";
+} from "./chunk-NENW2CBS.js";
+import "./chunk-PZQZAEDH.js";
 
 // node_modules/ngx-drag-drop/fesm2022/ngx-drag-drop.mjs
 var DROP_EFFECTS = ["move", "copy", "link"];
