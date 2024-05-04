@@ -42,6 +42,10 @@ export class MembreProjetServiceService {
     return this.http.post<MembreProjet>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
   }
 
+  public deleteMembreProjet = (route: string) => {
+    return this.http.delete(this.createCompleteRoute(route, this.envUrl.urlAddress), this.generateHeaders());
+  }
+
 
 
 }

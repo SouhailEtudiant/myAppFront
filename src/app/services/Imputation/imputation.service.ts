@@ -3,13 +3,23 @@ import { ImputationDTO } from '../../models/ImputationDTO.models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { EnvironmentUrlService } from '../environment-url.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ImputationAdd } from '../../models/ImputationAdd.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImputationService {
   cookieValue : string="" ;
+  form: FormGroup = new FormGroup({
+    date: new FormControl(""),
+    chargeEnHeure: new FormControl(0),
+    isActive: new FormControl(""),
+    idUtilisateur: new FormControl(""),
+    idTache: new FormControl(0),
  
+  });
+
 
   imp: ImputationDTO[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
@@ -31,5 +41,9 @@ export class ImputationService {
       next: (jou: ImputationDTO[]) => {this.imp = jou},
       
     });
+  }
+
+  public createImp = (route: string) => {
+    return this.http.post<ImputationAdd>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
   }
 }

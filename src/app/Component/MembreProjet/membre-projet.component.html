@@ -1,0 +1,113 @@
+<div class="pc-container">
+    <div class="pcoded-content">
+    
+    <div class="page-header">
+    <div class="page-block">
+    <div class="row align-items-center">
+    <div class="col-md-12">
+    <div class="page-header-title">
+    <h5 class="m-b-10">Utilisateurs</h5>
+    </div>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/users">Home</a></li>
+    <li class="breadcrumb-item"> Gestion Des Membre Projet </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="row">
+    
+     
+    <div class="card">
+    <div class="card-header"  style="border-color: transparent; margin-bottom: -50px;">
+    <h5>Liste des Membre de Projet</h5>
+    <div style="margin-top: 20px;">
+      <div class="d-flex">
+        <div class="p-2 flex-grow-1">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Recherche Dynamique" [(ngModel)]="searchText">
+          </div>
+        </div>
+        <div class="p-2"></div>
+        <div class="p-2">
+          <button type="button" class="btn btn-outline-primary" (click)="AddGestionnaire()">
+            <i class="fa fa-plus"></i> Ajouter un Nouveau Membre </button>
+        </div>
+      </div>
+    </div>
+   
+    </div>
+    <div class="card-body" >
+      <table class="table table-hover">
+        <thead >
+         
+          <tr>
+          <th scope="col" style="background: transparent;">Image</th>
+          <th scope="col" style="background: transparent;">Nom</th>
+          <th scope="col"style="background: transparent;">Prenom</th>
+          <th scope="col" style="background: transparent;">Role</th>
+          <th scope="col" style="background: transparent;">Email</th>
+          <th scope="col" style="background: transparent;">Action</th>
+  
+        </tr>
+        
+      </thead>
+      <tbody >
+        <tr *ngFor="let us of repository.members| filter: searchText | paginate
+        : {
+            id: 'MicroservicePagination',
+            itemsPerPage: 3 ,
+            currentPage: p,
+            totalItems: repository.members.length
+          }">
+          
+          <td><img [src]="createImgPath(us.imagePath)" alt="profile picture" style="width:60px; height:60px;"></td>
+          <td>{{us.nom}}</td>
+          <td>{{us.prenom}}</td>
+          <td>{{us.role}}</td>
+          <td>{{us.email}}</td>
+          <td>
+            <button type="button" id="update" class="btn btn-outline-danger" (click)="ConfirmModal(templateDelete)" style="margin-right: 10px;border-radius: 25px;"><i class="fas fa-edit"></i> Supprimer Membre</button> 
+  
+            </td>
+            <ng-template #templateDelete>
+              <div class="modal-header text-center"> <h4>Voulez vous Supprimer ?</h4></div>
+              <div class="modal-body text-center">
+                <button type="button" class="btn btn-primary" style="margin-right: 20px;"  [disabled]="clicked" (click)="deleteMember(us.userId,us.idProjet)">
+                    <span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true"></span> 
+                 Confirmer
+                </button> 
+                <button type="button" class="btn btn-danger" (click)="decline()">Annuler </button>
+              </div>
+            </ng-template>
+  
+  
+             
+        </tr>
+      </tbody>
+
+ <!-- Modal Delete -->
+
+
+
+    </table>
+   
+  
+  
+      <pagination-controls id="MicroservicePagination" class="my-pagination" (pageChange)="p = $event"
+      previousLabel="Prec " nextLabel="Suiv ">
+      </pagination-controls>
+      
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    </div>
+   
+    

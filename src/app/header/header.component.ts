@@ -8,6 +8,7 @@ import { ProjetServceService } from '../services/Projet/projet-servce.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent  implements OnInit {
+
   name : string | null  =""
   prenom : string  | null  =""
   role : string | null  =""
@@ -29,5 +30,9 @@ export class HeaderComponent  implements OnInit {
   public createImgPath = (serverPath: string) => { 
     return `http://localhost:15533/${localStorage .getItem('img')}`; 
   }
+
+  addtolocalstorage(id : Number) {
+    localStorage.setItem("idprojMembre",id.toString())
+    }
   
 }

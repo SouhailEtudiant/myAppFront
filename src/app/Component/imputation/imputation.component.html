@@ -16,11 +16,159 @@
 
 <button class="btn btn-primary" id="show" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="display: none;"></button>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  style="min-width:600px;">
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <!-- <h5  style="margin-bottom: 15px;">Imputer le :</h5> -->
+    <h5></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="reset()"></button>
   </div>
   <div class="offcanvas-body">
-    ...
+    <div class="row">
+   <h5 id="offcanvasRightLabel"  style="margin-bottom: 15px;"></h5>
+    <div class="row">
+      
+    <div class="input-group flex-nowrap" style="margin-top: 15px; margin-bottom: 15px;">
+      <input type="text" class="form-control" #nameInput placeholder="Chercher par Id Tache" aria-label="Chercher par Id Tache" aria-describedby="addon-wrapping" >
+      <span class="input-group-text" id="addon-wrapping" (click)="searchTask()"><i class="fas fa-search"></i></span>
+    </div>
+    <div *ngIf="repositoryTache.tachebyID.length == 0 && clicked" >
+    <div class="alert alert-danger" role="alert">
+      Vérifier Id du tache
+    </div>
+    </div>
+      <div *ngFor="let task of repositoryTache.tachebyID"> 
+       
+        <div *ngIf="repositoryTache.tachebyID.length > 0">
+      
+      <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Responsable
+        </div>
+        <div class="col-md-1">		
+        <ngx-avatars name="{{task.nom}} {{task.prenom}}" size=30     title="{{task.nom}} {{task.prenom}}" > </ngx-avatars>
+        </div>
+        <div class="col-md-4" style="margin-top: 5px;">
+  
+          {{task.nom}} {{task.prenom}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Date Début
+        </div>
+        <div class="col-md-1">		
+        </div>
+        <div class="col-md-3" style="margin-top: 5px;">
+  
+          {{task.dateDebut}}
+        </div>
+        </div>
+  
+        <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Date Fin
+        </div>
+        <div class="col-md-1">		
+        </div>
+        <div class="col-md-3" style="margin-top: 5px;">
+  
+          {{task.dateFin}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Priorité
+        </div>
+        <div class="col-md-1">		
+        </div>
+        <div *ngIf = "task.prioriteLabel=='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+          <label 
+          class="badge rounded-pill text-bg-warning">
+          {{task.prioriteLabel}}</label>
+        </div>
+        <div *ngIf = "task.prioriteLabel=='URGENT'" class="col-md-3" style="margin-top: 5px;">
+          <label
+          class="badge rounded-pill text-bg-danger">
+          {{task.prioriteLabel}}</label>
+        </div>
+        <div *ngIf = "task.prioriteLabel=='MOYENNE'" class="col-md-3" style="margin-top: 5px;">
+          <label
+          class="badge rounded-pill text-bg-success">
+          {{task.prioriteLabel}}</label>
+        </div>
+        <div *ngIf = "task.prioriteLabel=='BASSE'" class="col-md-3" style="margin-top: 5px;">
+          <label
+          class="badge rounded-pill text-bg-success">
+          {{task.prioriteLabel}}</label>
+        </div>
+        <div *ngIf = "task.prioriteLabel!='MOYENNE' && task.prioriteLabel!='BASSE'
+        && task.prioriteLabel!='URGENT' && task.prioriteLabel!='HAUTE'" class="col-md-3" style="margin-top: 5px;">
+          <label
+          class="badge rounded-pill text-bg-success">
+          {{task.prioriteLabel}}</label>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Status
+        </div>
+        <div class="col-md-1">		
+        </div>
+        <div class="col-md-3" style="margin-top: 5px;">
+          <label style="cursor: pointer;"
+          class="badge rounded-pill text-bg-primary">
+          {{task.statusLabel}}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Type
+        </div>
+        <div class="col-md-1">		
+        </div>
+        <div class="col-md-3" style="margin-top: 5px;">
+          <label 
+          class="badge rounded-pill text-bg-info" style="background-color: #E5D2B8 !important;">
+          {{task.typeLabel}}</label>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-md-4" style="margin-top: 5px;">
+        Titre
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7" style="margin-top: 5px;">
+  
+          {{task.tacheTitre}}
+        </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px;">
+          <div class="col-md-4" style="margin-top: 20px;">
+          Nombre d'heure :
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-7" style="margin-top: 5px;">
+           
+            <input type="number" class="form-control" #nombreHeure name="Heure" placeholder="Heure" ng-model="myDecimal" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.5" required />
+          </div>
+          </div>
+          <div class="row" style="margin-top: 15px;">
+          
+          <button type="button" class="btn btn-primary" (click)="addImputation(task.id)">
+            Confirmer </button>
+         
+          </div>
+
+        </div>
+        
+        
+          
+      </div>
+
+
+    </div>
   </div>
