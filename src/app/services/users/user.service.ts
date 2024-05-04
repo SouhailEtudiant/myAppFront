@@ -9,6 +9,7 @@ import { roles } from '../../models/Roles.model';
 import { changeRole } from '../../models/ChangeRole.models';
 import { ChangePassword } from '../../models/ChangePass.models';
 import { AddRole } from '../../models/AddRole.models';
+import { GetUserDetailWithProject } from '../../models/GetUserDetailWithProject.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,7 @@ export class UserService {
 
   users: getuserwthrole[]= [];
   gestionnaires: getuserwthrole[]= [];
+  members: GetUserDetailWithProject[]= [];
   roles: roles[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
@@ -69,8 +71,23 @@ export class UserService {
     });
   }
 
+  public getMembers = (id : Number) => {
+    return this.http.get<GetUserDetailWithProject[]>(this.createCompleteRoute("api/Authentification/GetMembers?idProjet="+id, this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: GetUserDetailWithProject[]) => {this.members = jou},
+      
+    });
+  }
+
   public getGestionnaire = () => {
     return this.http.get<getuserwthrole[]>(this.createCompleteRoute("api/Authentification/GetGestionnaire", this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: getuserwthrole[]) => {this.gestionnaires = jou},
+    });
+  }
+
+  public GetUsersMembers = (id : Number) => {
+    return this.http.get<getuserwthrole[]>(this.createCompleteRoute("api/MembreProjet/GetNotAffectedUser?projetId="+id, this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: getuserwthrole[]) => {this.gestionnaires = jou},
     });

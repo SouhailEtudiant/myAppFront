@@ -2,9 +2,11 @@
 
 
 
-<div class="pc-container" style="background-image: url(/assets/images/6.jpg);
+<div class="pc-container" style="background-image: url(/assets/images/alarm.jpg);
 
   background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat;
 
  " >
 
@@ -47,7 +49,7 @@
 		</div>
 	</div>
 <!-- -->
-	<div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width:600px;  background-color: #F6F5EC; overflow:auto"> 
+	<div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="min-width:600px; overflow:auto"> 
 		 <!-- background-color: #f1f1f1; -->
 		<div *ngFor="let task of repository.tachebyID"> 
 		<div class="offcanvas-header">
@@ -55,10 +57,7 @@
 				{{task.tacheTitre}}
 			</h4>
 			
-<!-- 		   
-			<div class="alert alert-secondary" role="alert" id="offcanvasRightLabel" style="width: 500px;" >
-				Cette tâche peut être visible par d’autres utilisateurs.
-			  </div>  -->
+
 		  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
@@ -69,6 +68,8 @@
 				 justify-content: end !important; margin-bottom: 10px;">
 					<button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas" (click)="ConfirmModalSousTache(templateSousTache, task.id, task.idStatus)">Ajouter une Sous Tache</button>
 			 </div>
+		
+	
 				<div class="row">
 					<div class="col-md-4" style="margin-top: 5px;">
 					Responsable
@@ -79,6 +80,17 @@
 					<div class="col-md-4" style="margin-top: 5px;">
 		
 						{{task.nom}} {{task.prenom}}
+					</div>
+				  </div>
+				  <div class="row">
+					<div class="col-md-4" style="margin-top: 5px;">
+					Id Tache
+					</div>
+					<div class="col-md-1">		
+					</div>
+					<div class="col-md-3" style="margin-top: 5px;">
+		
+						{{task.id}}
 					</div>
 				  </div>
 				  <div class="row">
@@ -177,6 +189,10 @@
 						{{task.tacheDescription}}
 					</div>
 				</div>
+
+				
+
+
 			 <!-- Sous Tache List -->
 			 <div class="row" *ngIf="repository.SousTacheList.length > 0">
 				<div class="col-md-4" style="margin-top: 5px;">
@@ -264,7 +280,7 @@
 	</div>
  </div>  
 
- <div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight2" aria-labelledby="offcanvasRightLabel2" style="width:600px;  background-color: #F6F5EC; overflow:auto"> 
+ <div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight2" aria-labelledby="offcanvasRightLabel2" style="min-width:600px;overflow:auto"> 
 	<!-- background-color: #f1f1f1; -->
    <div *ngFor="let task of repository.tachebyID"> 
    <div class="offcanvas-header">
@@ -393,11 +409,13 @@
 			   </div>
 		   </div>
 		<!-- Sous Tache List -->
+		
 		<div class="row" *ngIf="repository.SousTacheList.length > 0">
 		   <div class="col-md-4" style="margin-top: 5px;">
 		   Liste Sous Tache
 		   </div>
 	   </div>
+		</div>
 		   <div class="card" *ngFor="let soustache of repository.SousTacheList" >
 			   <div class="card-body">
 				   <div class="row">

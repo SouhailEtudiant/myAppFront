@@ -1,1 +1,4 @@
 @import '../../../../node_modules/@fullcalendar/common/main.css';
+.col-md-4  {
+    font-weight: bold;
+}

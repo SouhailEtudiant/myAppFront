@@ -47,6 +47,8 @@ import { MomentModule } from 'ngx-moment';
 import { DatePipe } from '@angular/common';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { ImputationComponent } from './Component/imputation/imputation.component';
+import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.component';
+import { AddmembreProjetComponent } from './Component/MembreProjet/addmembre-projet/addmembre-projet.component';
  
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { ImputationComponent } from './Component/imputation/imputation.component
    BoardssComponent,
    HeaderfrontComponent,
    AddTacheComponent,
-   ImputationComponent
+   ImputationComponent,
+   MembreProjetComponent,
+   AddmembreProjetComponent
 
   ],
   imports: [
