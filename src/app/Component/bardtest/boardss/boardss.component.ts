@@ -25,6 +25,7 @@ import { commentaire } from '../../../models/Commentaire.models';
   styleUrl: './boardss.component.css'
 })
 export class BoardssComponent implements OnInit {
+
  
   public sidebarShow: boolean = false;
   ok : boolean =true ;
@@ -43,6 +44,7 @@ export class BoardssComponent implements OnInit {
  public repository: TacheServicesService ,
  private  cookieService: CookieService  , private router: Router,
  private modalActive: BsModalService,
+ private modalDelete: BsModalService,
  private route: ActivatedRoute,
     public repositoryUser: UserService,
     public repositoryPriorite: ParamPrioriteServiceService,
@@ -57,6 +59,7 @@ export class BoardssComponent implements OnInit {
      public modalRefSousTache: BsModalRef,
      private modalActiveUpdateStatus: BsModalService,
      public modalRefUpdateStatus: BsModalRef,
+     public modelRefDelete: BsModalRef,
 ) {
   router.events.forEach((event) => {
     if(event instanceof NavigationEnd) {
@@ -84,7 +87,32 @@ export class BoardssComponent implements OnInit {
   
   }
 
+  openPopupDelete (template: TemplateRef<any>){
+    this.modelRefDelete = this.modalDelete.show(template, { class: 'modal-dialog-centered modal-sm', ignoreBackdropClick: true  });
+  }
 
+  Delete(id : Number , idTache : Number) {
+    this.clicked =true ;
+      let urlAdress: string = `api/Commentaire/DeleteCommentaire?id=`+id
+      this.repositoryComm.deleteComm(urlAdress)
+      .subscribe({
+        
+        next: () => {
+          this.toastrService.success("Deleted","Imputation Supprimé avec success") ;
+          this.repositoryComm.getComms(idTache);
+          this.modalDelete.hide();
+        //  this.reset()
+          this.clicked =false ;
+        },
+        error: (err: HttpErrorResponse) => {
+           this.toastrService.error("Error",err.message) ;
+           this.clicked =false ;
+        }
+      })
+    }
+    decline() {
+      this.modalDelete.hide()
+    }
     
     ConfirmModal(template: TemplateRef<any> , id : Number) {
       this.submitted = false;

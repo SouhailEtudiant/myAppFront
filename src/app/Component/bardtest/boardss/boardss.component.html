@@ -241,9 +241,22 @@
 							  <div class="col">
 								  <div class="msg">
 									  <p class="m-b-0">{{comm.description}}</p>
-									  
+									 
 								  </div>
+								  <i class="fas fa-trash-alt" style="
+								  margin-left: 11px;
+								  color: red; cursor:pointer" (click)="openPopupDelete(templateDelete)"></i>
 								  <p class="text-muted m-b-0"><i class="fas fa-clock m-r-10"></i>{{comm.date}}</p>
+								  <ng-template #templateDelete>
+									<div class="modal-header text-center"> <h4>Voulez vous Supprimer ?</h4></div>
+									<div class="modal-body text-center">
+									  <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="Delete(comm.id,comm.idTache)">
+										  <span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true" ></span> 
+									   Confirmer
+									  </button> 
+									  <button type="button" class="btn btn-danger" (click)="decline()">Annuler </button>
+									</div>
+								  </ng-template>
 							  </div>
 						  </div>
 						

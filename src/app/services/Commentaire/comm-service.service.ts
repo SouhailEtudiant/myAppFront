@@ -54,6 +54,10 @@ export class CommServiceService {
     return this.http.post<commentaire>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
   }
 
+  public deleteComm = (route: string) => {
+    return this.http.delete(this.createCompleteRoute(route, this.envUrl.urlAddress), this.generateHeaders());
+  }
+
 
   public resetForm() {
 

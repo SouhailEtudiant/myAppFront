@@ -46,4 +46,9 @@ export class ImputationService {
   public createImp = (route: string) => {
     return this.http.post<ImputationAdd>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
   }
+
+  public deleteImp = (route: string) => {
+    return this.http.delete(this.createCompleteRoute(route, this.envUrl.urlAddress), this.generateHeaders());
+  }
+
 }
