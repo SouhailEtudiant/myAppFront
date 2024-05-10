@@ -13,8 +13,20 @@
 </div>
 </div>
 
+<ng-template #templateDelete>
+  <div class="modal-header text-center"> <h4>Voulez vous Supprimer ?</h4></div>
+  <div class="modal-body text-center">
+    <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="Delete()">
+        <span *ngIf="clicked" class="spinner-border spinner-border-sm" aria-hidden="true" ></span> 
+     Confirmer
+    </button> 
+    <button type="button" class="btn btn-danger" (click)="decline()">Annuler </button>
+  </div>
+</ng-template>
+
 
 <button class="btn btn-primary" id="show" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="display: none;"></button>
+<button class="btn btn-primary" id="showpopUp" type="button" (click)="ConfirmModal(templateDelete)" style="display: none;"></button>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  style="min-width:600px;">
   <div class="offcanvas-header">

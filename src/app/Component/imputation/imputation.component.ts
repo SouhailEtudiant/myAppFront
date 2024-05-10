@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, LOCALE_ID, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
@@ -13,15 +13,15 @@ import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 import { TacheServicesService } from '../../services/Tache/tache-services.service';
 import { ImputationAdd } from '../../models/ImputationAdd.models';
 import { DatePipe, formatDate } from '@angular/common';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-imputation',
   templateUrl: './imputation.component.html',
   styleUrl: './imputation.component.css'
 })
 export class ImputationComponent implements OnInit {
-submitted() {
-throw new Error('Method not implemented.');
-}
+
+
   @ViewChild('nameInput')
   nameInput!: ElementRef;
   @ViewChild('nombreHeure')
@@ -40,8 +40,9 @@ datessString="";
     private  cookieService: CookieService  , private router: Router,
     private http: HttpClient ,  private envUrl: EnvironmentUrlService,  
     public repositoryTache: TacheServicesService ,
-    private datePipe: DatePipe,) {}
-
+    private datePipe: DatePipe,
+    private modalDelete: BsModalService ,) {}
+    modelRefDelete : BsModalRef | undefined;
     private createCompleteRoute = (route: string, envAddress: string) => {
       return `${envAddress}/${route}`;
     }
@@ -64,12 +65,26 @@ datessString="";
    
   }
 
+
+
+
+  ConfirmModal(template: TemplateRef<any>) {
+    this.modelRefDelete = this.modalDelete.show(template, { class: 'modal-dialog-centered modal-sm', ignoreBackdropClick: true  });
+  }
+ 
+  decline(): void {
+    this.modalDelete.hide();
+  }
+
+  
  
 
   getData (){
+    this.imp= [] ;
     this.http.get<ImputationDTO[]>(this.createCompleteRoute("api/Imputation/GetImputationByUser", this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: ImputationDTO[]) => {
+       
         for(let d of jou) {
           this.imp.push({id:d.id ,title: d.title, start: d.start})
           console.log(d) ; 
@@ -92,6 +107,15 @@ datessString="";
       
   stickyFooterScrollbar : true,
      // droppable: true,// will let it receive events!,
+     eventClick: function(info) {
+      localStorage.setItem("idImpToDelete",info.event.id) ;
+console.log(info.event.id);
+console.log(info.event.title);
+document.getElementById("showpopUp")?.click();
+      // change the border color just for fun
+      info.el.style.borderColor = 'red';
+    },
+
       eventDrop: function(info) {
         console.log("OKAYY");
         console.log(info.event.id);
@@ -170,6 +194,29 @@ datessString="";
           })
      }
     } 
+
+    Delete() {
+      this.clicked =true ;
+      //localStorage.getItem("idImpToDelete") ;
+      let idToDelete = Number(localStorage.getItem("idImpToDelete"))
+      let urlAdress: string = `api/Imputation/DeleteImputation?id=`+idToDelete
+      this.repository.deleteImp(urlAdress)
+      .subscribe({
+        
+        next: () => {
+          this.toastrService.success("Deleted","Imputation Supprimé avec success") ;
+          this.getData();
+          this.modalDelete.hide();
+        //  this.reset()
+          this.clicked =false ;
+        },
+        error: (err: HttpErrorResponse) => {
+           this.toastrService.error("Error",err.message) ;
+           this.clicked =false ;
+        }
+      })
+      
+      }
  
   eventClick(event : any){
     console.log(event);
