@@ -44,7 +44,8 @@
             "src/assets/js/feather.min.js",
             "src/assets/js/pcoded.min.js",
             "src/assets/js/apexcharts.min.js",
-            "src/assets/js/dashboard-sale.js"]
+            "src/assets/js/dashboard-sale.js",
+            "node_modules/apexcharts/dist/apexcharts.min.js"]
           },
           "configurations": {
             "production": {

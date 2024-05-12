@@ -49,6 +49,7 @@ import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular
 import { ImputationComponent } from './Component/imputation/imputation.component';
 import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.component';
 import { AddmembreProjetComponent } from './Component/MembreProjet/addmembre-projet/addmembre-projet.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
  
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { AddmembreProjetComponent } from './Component/MembreProjet/addmembre-pro
     BsDatepickerModule.forRoot(),
     FullCalendarModule ,
     MomentModule,
+    NgApexchartsModule
 
   ],
   providers: [CookieService, DatePipe],
