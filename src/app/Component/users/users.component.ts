@@ -10,6 +10,7 @@ import { changeRole } from '../../models/ChangeRole.models';
 import { getuserwthrole } from '../../models/GetUserDetail.model';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { ChangePassword } from '../../models/ChangePass.models';
+import { EnvironmentUrlService } from '../../services/environment-url.service';
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,7 @@ export class UsersComponent {
 
   constructor (public repository: UserService,private modalActive: BsModalService,
     private toastrService: ToastrService,private modalStatus: BsModalService,
-    private  cookieService: CookieService  , private router: Router, ) {}
+    private  cookieService: CookieService  , private router: Router, private envUrl : EnvironmentUrlService , ) {}
   modalRef: BsModalRef | undefined;
   moedlrefStatus : BsModalRef | undefined;
   p: number = 1;
@@ -48,7 +49,7 @@ export class UsersComponent {
     }
 
     public createImgPath = (serverPath: string) => { 
-      return `http://localhost:15533/${serverPath}`; 
+      return this.envUrl.urlAddress+`/${serverPath}`; 
     }
 
     ChangeRole(usr : getuserwthrole)

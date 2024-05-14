@@ -111,12 +111,23 @@ export class TacheServicesService {
     });
   }
 
-  public getTacheBoardParProjet = (idprojet : number) => {
-    return this.http.get<TacheListForBoard[]>(this.createCompleteRoute("api/Tache/GetListOfListsParProjet?projectID="+idprojet, this.envUrl.urlAddress), this.generateHeaders())
-    .subscribe({
-      next: (jou: TacheListForBoard[]) => {this.tacheBoardProject = jou},
-      
-    });
+  public getTacheBoardParProjet = (idprojet : number, idUser? : string) => {
+    if(idUser=="")
+      {
+        return this.http.get<TacheListForBoard[]>(this.createCompleteRoute("api/Tache/GetListOfListsParProjet?projectID="+idprojet, this.envUrl.urlAddress), this.generateHeaders())
+        .subscribe({
+          next: (jou: TacheListForBoard[]) => {this.tacheBoardProject = jou},
+          
+        });
+      }
+      else {
+        return this.http.get<TacheListForBoard[]>(this.createCompleteRoute("api/Tache/GetListOfListsParProjet?projectID="+idprojet+"&userId="+idUser, this.envUrl.urlAddress), this.generateHeaders())
+        .subscribe({
+          next: (jou: TacheListForBoard[]) => {this.tacheBoardProject = jou},
+          
+        });
+      }
+  
   }
   
   public createTache = (route: string) => {

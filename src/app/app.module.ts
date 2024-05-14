@@ -50,6 +50,7 @@ import { ImputationComponent } from './Component/imputation/imputation.component
 import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.component';
 import { AddmembreProjetComponent } from './Component/MembreProjet/addmembre-projet/addmembre-projet.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { DashboardUserComponent } from './Component/dashboard-user/dashboard-user.component';
  
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
    AddTacheComponent,
    ImputationComponent,
    MembreProjetComponent,
-   AddmembreProjetComponent
+   AddmembreProjetComponent,
+   DashboardUserComponent
 
   ],
   imports: [

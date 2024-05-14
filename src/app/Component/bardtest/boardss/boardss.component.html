@@ -16,18 +16,31 @@
 			<div class="page-block">
 			<div class="row align-items-center">
 			<div class="col-md-12">
-			<div class="page-header-title">
-			<h5 class="m-b-10">Gestion Des Taches</h5>
-			</div>
+				<div class="d-flex justify-content-between">
+			 
 			<ul class="breadcrumb">
 			  <li class="breadcrumb-item"><a routerLink="/priorite">Home</a></li>
 			<li class="breadcrumb-item"> Gestion Des Taches </li>
 			</ul>
+ 
+			 
+				<select class="form-select form-select-sm" style="width:170px" aria-label="Small select example"
+				(change)="onChange($event)">
+					
+					<option value="" selected>Filtrer par utilisateur</option>
+					<option value ={{us.userId}} *ngFor="let us of repositoryUser.users" [ngValue]="us.userId">
+						{{us.nom}} {{us.prenom}}</option>
+				  </select>
+				 
+			  
+			
+			</div>
+				 
 			</div>
 			</div>
 			</div>
 			</div>
-	<div class="lists">
+	<div class="lists" style="overflow-y: hidden;">
         
 		<div class="list" *ngFor="let list of repository.tacheBoardProject">
 			<header> 
@@ -37,9 +50,11 @@
 			<ul>
 				<li *ngFor="let item of list.listTache" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="getData(item.id)" >
 					{{item.tacheTitre}}
-					
+					<div>
 			<ngx-avatars name="{{item.nom}} {{item.prenom}}" size=30   [style]="customStyle" title="{{item.nom}} {{item.prenom}}" > </ngx-avatars>
- 
+			<i class="fas fa-stopwatch" style="color: red;"></i>&nbsp;  &nbsp; 
+			<i class="fas fa-battery-full" style="color:green"></i>
+				</div>
 				</li>     
 			</ul>
         

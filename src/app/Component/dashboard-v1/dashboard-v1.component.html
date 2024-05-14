@@ -6,12 +6,12 @@
               <div class="row align-items-center">
                   <div class="col-md-12">
                       <div class="page-header-title">
-                          <h5 class="m-b-10">Dashboard</h5>
+                          <h5 class="m-b-10">Tableau de board administrateur</h5>
                       </div>
                       <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../navigation/index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0)">Membership</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a >Home</a></li>
+ 
+                        <li class="breadcrumb-item" aria-current="page">Tableau de board administrateur</li>
                       </ul>
                   </div>
               </div>
@@ -57,6 +57,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Nombre de type ticket par projet</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="chart">
+                            <apx-chart
+                              [series]="chartOptionsS.series"
+                              [chart]="chartOptionsS.chart"
+                              [xaxis]="chartOptionsS.xaxis"
+                              [markers]="chartOptionsS.markers"
+                              [stroke]="chartOptionsS.stroke"
+                              [yaxis]="chartOptionsS.yaxis"
+                              [dataLabels]="chartOptionsS.dataLabels"
+                              [title]="chartOptionsS.title"
+                              [fill]="chartOptionsS.fill"
+                              [tooltip]="chartOptionsS.tooltip"
+                              [legend]="chartOptionsS.legend"
+                            ></apx-chart>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- progressbar static data end -->
             <!-- visitors  end -->
             <!-- progressbar static data start -->
             <div class="col-lg-8 col-md-6">
@@ -95,30 +121,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Nombre de type ticket par projet</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="chart">
-                            <apx-chart
-                              [series]="chartOptionsS.series"
-                              [chart]="chartOptionsS.chart"
-                              [xaxis]="chartOptionsS.xaxis"
-                              [markers]="chartOptionsS.markers"
-                              [stroke]="chartOptionsS.stroke"
-                              [yaxis]="chartOptionsS.yaxis"
-                              [dataLabels]="chartOptionsS.dataLabels"
-                              [title]="chartOptionsS.title"
-                              [fill]="chartOptionsS.fill"
-                              [tooltip]="chartOptionsS.tooltip"
-                              [legend]="chartOptionsS.legend"
-                            ></apx-chart>
-                    </div>
-                </div>
-            </div>
-            <!-- progressbar static data end -->
+
         </div>
         <!-- [ Main Content ] end -->
     </div>

@@ -18,6 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AbstractControl } from '@angular/forms';
 import { CommServiceService } from '../../../services/Commentaire/comm-service.service';
 import { commentaire } from '../../../models/Commentaire.models';
+import { EnvironmentUrlService } from '../../../services/environment-url.service';
 
 @Component({
   selector: 'app-boardss',
@@ -37,7 +38,7 @@ export class BoardssComponent implements OnInit {
     
  };
  myDate = new Date();
-
+ selected_user = ''; 
    
  
  constructor(@Inject(DOCUMENT) private document: Document,
@@ -60,11 +61,12 @@ export class BoardssComponent implements OnInit {
      private modalActiveUpdateStatus: BsModalService,
      public modalRefUpdateStatus: BsModalRef,
      public modelRefDelete: BsModalRef,
+     private envUrl : EnvironmentUrlService 
 ) {
   router.events.forEach((event) => {
     if(event instanceof NavigationEnd) {
       console.log(this.route.snapshot.paramMap.get('id'))
-      this.repository.getTacheBoardParProjet( Number(this.route.snapshot.paramMap.get('id'))) ;
+      this.repository.getTacheBoardParProjet( Number(this.route.snapshot.paramMap.get('id')),"") ;
     }
     
   });
@@ -81,7 +83,7 @@ export class BoardssComponent implements OnInit {
     }
     else { 
        
-        this.repository.getTacheBoardParProjet(a) ;
+        this.repository.getTacheBoardParProjet(a,"") ; this.repositoryUser.getusers()
     
     }
   
@@ -167,7 +169,7 @@ export class BoardssComponent implements OnInit {
    .subscribe({
      next: (pr : Tache) => {
        this.toastrService.success("Ajouter","Tache ajouter avec succée") ;
-       this.repository.getTacheBoardParProjet(Number(this.route.snapshot.paramMap.get('id')));
+       this.repository.getTacheBoardParProjet(Number(this.route.snapshot.paramMap.get('id')),"");
        this.modalRef.hide();
        this.clicked=false ; 
        this.submitted = false;
@@ -192,7 +194,7 @@ export class BoardssComponent implements OnInit {
   }
 
   public createImgPath = (serverPath: string) => { 
-    return `http://localhost:15533/${serverPath}`; 
+    return this.envUrl.urlAddress+`/${serverPath}`; 
   }
 
   get fComm(): { [key: string]: AbstractControl } {
@@ -275,6 +277,13 @@ console.log(this.repository.formSousTache.value)
   }
 }
 
+onChange(value: any) { 
+  console.log(value.target.value);
+  this.selected_user = value.target.value; 
+  this.repository.getTacheBoardParProjet( Number(this.route.snapshot.paramMap.get('id')),this.selected_user) ;
+
+} 
+
 openPopupUpdateStatus (id : Number,status : Number,template: TemplateRef<any>){
   this.repository.formUpdateStatus.controls['tacheId'].setValue(id) ; 
   this.repository.formUpdateStatus.controls['idStatus'].setValue(status) ; 
@@ -295,7 +304,7 @@ onSubmitUpdateStatus(){
         this.toastrService.success("","Status Changé avec succées") ;
         this.modalRefUpdateStatus.hide();
         this.repository.getTacheByID(this.repository.formUpdateStatus.controls['tacheId'].value); 
-        this.repository.getTacheBoardParProjet(this.repository.tachebyID[0].idProjet);
+        this.repository.getTacheBoardParProjet(this.repository.tachebyID[0].idProjet,"");
        // this.repositoryComm.getComms(id); 
         //this.repository.getSousTache(this.taskId) ; 
       },
@@ -306,6 +315,8 @@ onSubmitUpdateStatus(){
 
 
  }
+
+
 
 }
   
