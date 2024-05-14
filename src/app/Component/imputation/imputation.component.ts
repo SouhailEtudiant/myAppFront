@@ -81,15 +81,13 @@ datessString="";
 
   getData (){
     this.imp= [] ;
-    this.http.get<ImputationDTO[]>(this.createCompleteRoute("api/Imputation/GetImputationByUser", this.envUrl.urlAddress), this.generateHeaders())
+    this.http.get<ImputationDTO[]>(this.createCompleteRoute("api/Imputation/GetImputationByUser?UserId="+localStorage.getItem('id') , this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: ImputationDTO[]) => {
        
         for(let d of jou) {
-          this.imp.push({id:d.id ,title: d.title, start: d.start})
-          console.log(d) ; 
-          console.log(jou) ; 
-          console.log(this.imp)
+          this.imp.push({id:d.id ,title: d.title, start: d.start ,prioriteId:d.prioriteId,
+            borderColor:d.borderColor })
         }
       },
       

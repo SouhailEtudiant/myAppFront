@@ -16,6 +16,7 @@ import { TacheListComponent } from './Component/Tache/tache-list/tache-list.comp
 import { BoardssComponent } from './Component/bardtest/boardss/boardss.component';
 import { ImputationComponent } from './Component/imputation/imputation.component';
 import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.component';
+import { DashboardUserComponent } from './Component/dashboard-user/dashboard-user.component';
 
 const routes: Routes = [
   {path : '' , title : 'Login Page' , component:LoginComponent} ,
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path : 'type' , title : 'Type Page' , component:TypeListComponent} ,
   {path : 'users' , title : 'Gestion Des Utilisateurs Page' , component:UsersComponent} ,
   {path : 'dashboard' , title : 'Dashboard Page' , component:DashboardV1Component} ,
+  {path : 'dashboardUser' , title : 'Dashboard Page' , component:DashboardUserComponent} ,
   {path : 'role' , title : 'Role Page' , component:RoleListComponent} ,
   {path : 'login' , title : 'login Page' , component:LoginComponent} ,
   {path : 'projet' , title : 'Projet Page' , component:ProjetListComponent} ,

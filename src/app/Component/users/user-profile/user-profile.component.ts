@@ -45,8 +45,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+
   public createImgPath = (serverPath: string) => { 
-    return `http://localhost:15533/${localStorage .getItem('img')}`; 
+    return this.envUrl.urlAddress+`/${localStorage .getItem('img')}`; 
   }
 
 }

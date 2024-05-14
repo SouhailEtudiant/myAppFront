@@ -298,135 +298,136 @@ getDashboardMultiLine (){
         this.tacheEnCours.push(nb.tacheEnCours)
         this.tacheTermine.push(nb.tacheTermine)
           }
+          this.chartOptionsS = {
+  
+            series: [
+              {
+                name: "Tache En Cours",
+                type: "line",
+                data:  this.tacheEnCours
+              },
+              {
+                name: "Tache Termine",
+                type: "line",
+                data:  this.tacheTermine
+              },
+              {
+                name: "Bogue",
+                type: "line",
+                data: this.tacheBug
+              }
+            ],
+            chart: {
+              height: 350,
+              type: "line",
+              stacked: false,
+              toolbar: {
+                show: true,
+                offsetX: 0,
+                offsetY: 0,
+                tools: {
+                  download: true,
+                  selection: true,
+                  zoom: true,
+                  zoomin: true,
+                  zoomout: true,
+                  pan: true,
+                  reset: false  ,
+                  customIcons: []
+                },
+                export: {
+                  csv: {
+                    filename: undefined,
+                    columnDelimiter: ',',
+                    headerCategory: 'category',
+                    headerValue: 'value',
+                    
+                  },
+                  svg: {
+                    filename: undefined,
+                  },
+                  png: {
+                    filename: undefined,
+                  }
+                },
+                autoSelected: 'zoom' 
+              },
+            },
+            
+            markers: {
+              size: 5,
+              colors: ['#5052FC', '#06CA98', "#ffba57", "#ED4C13"],
+              opacity: 0.9,
+              strokeWidth: 2,
+              hover: {
+                  size: 7,
+              }
+            },
+            stroke: {
+              width: [4, 4, 4]
+            },
+            title: {
+              text: "Nombre de type ticket par projet",
+              align: "left",
+              offsetX: 110
+            },
+          
+            xaxis: {
+              categories: this.ListeProjet
+            },
+            yaxis: [
+              {
+                axisTicks: {
+                  show: true
+                },
+                axisBorder: {
+                  show: true,
+                  color: "#008FFB"
+                },
+                labels: {
+                  style: {
+                    color: "#008FFB"
+                  }
+                },
+                title: {
+                  text: "Nombre Tache",
+                  style: {
+                    color: "#008FFB"
+                  }
+                },
+                
+              },
+              {
+                seriesName: "Income",
+                opposite: true,
+                axisTicks: {
+                  show: true
+                },
+                axisBorder: {
+                  show: true,
+                  color: "#00E396"
+                },
+                labels: {
+                  style: {
+                    color: "#00E396"
+                  }
+                },
+                title: {
+                  text: "Nombre Tache",
+                  style: {
+                    color: "#00E396"
+                  }
+                }
+              },
+             
+            ],
+            
+           
+          };
     },
     
   }); 
-  this.chartOptionsS = {
-  
-    series: [
-      {
-        name: "Tache En Cours",
-        type: "line",
-        data:  this.tacheEnCours
-      },
-      {
-        name: "Tache Termine",
-        type: "line",
-        data:  this.tacheTermine
-      },
-      {
-        name: "Bogue",
-        type: "line",
-        data: this.tacheBug
-      }
-    ],
-    chart: {
-      height: 350,
-      type: "line",
-      stacked: false,
-      toolbar: {
-        show: true,
-        offsetX: 0,
-        offsetY: 0,
-        tools: {
-          download: true,
-          selection: true,
-          zoom: true,
-          zoomin: true,
-          zoomout: true,
-          pan: true,
-          reset: false  ,
-          customIcons: []
-        },
-        export: {
-          csv: {
-            filename: undefined,
-            columnDelimiter: ',',
-            headerCategory: 'category',
-            headerValue: 'value',
-            
-          },
-          svg: {
-            filename: undefined,
-          },
-          png: {
-            filename: undefined,
-          }
-        },
-        autoSelected: 'zoom' 
-      },
-    },
-    
-    markers: {
-      size: 5,
-      colors: ['#5052FC', '#06CA98', "#ffba57", "#ED4C13"],
-      opacity: 0.9,
-      strokeWidth: 2,
-      hover: {
-          size: 7,
-      }
-    },
-    stroke: {
-      width: [4, 4, 4]
-    },
-    title: {
-      text: "Nombre de type ticket par projet",
-      align: "left",
-      offsetX: 110
-    },
-  
-    xaxis: {
-      categories: this.strings
-    },
-    yaxis: [
-      {
-        axisTicks: {
-          show: true
-        },
-        axisBorder: {
-          show: true,
-          color: "#008FFB"
-        },
-        labels: {
-          style: {
-            color: "#008FFB"
-          }
-        },
-        title: {
-          text: "Nombre Tache",
-          style: {
-            color: "#008FFB"
-          }
-        },
-        
-      },
-      {
-        seriesName: "Income",
-        opposite: true,
-        axisTicks: {
-          show: true
-        },
-        axisBorder: {
-          show: true,
-          color: "#00E396"
-        },
-        labels: {
-          style: {
-            color: "#00E396"
-          }
-        },
-        title: {
-          text: "Nombre Tache",
-          style: {
-            color: "#00E396"
-          }
-        }
-      },
-     
-    ],
-    
-   
-  };
+
 
 
 

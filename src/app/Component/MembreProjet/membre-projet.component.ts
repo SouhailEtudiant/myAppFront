@@ -11,6 +11,7 @@ import { MembreProjet } from '../../models/MembreProjet.models';
 import { MembreProjetServiceService } from '../../services/MembreProjet/membre-projet-service.service';
 import { AddmembreProjetComponent } from './addmembre-projet/addmembre-projet.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EnvironmentUrlService } from '../../services/environment-url.service';
 
 @Component({
   selector: 'app-membre-projet',
@@ -25,7 +26,7 @@ export class MembreProjetComponent {
   constructor (public repository: UserService,private modalActive: BsModalService,
     private toastrService: ToastrService,private modalDelete: BsModalService ,
     private  cookieService: CookieService  , private router: Router, 
-    public repositoryMembre: MembreProjetServiceService,
+    public repositoryMembre: MembreProjetServiceService,  private envUrl : EnvironmentUrlService ,
     private route: ActivatedRoute,) {
 
       router.events.forEach((event) => {
@@ -73,7 +74,7 @@ export class MembreProjetComponent {
     }
 
     public createImgPath = (serverPath: string) => { 
-      return `http://localhost:15533/${serverPath}`; 
+      return this.envUrl.urlAddress+`/${serverPath}`; 
     }
 
 

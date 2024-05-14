@@ -1,10 +1,13 @@
  
 
 
- li ngx-avatars {
+ li ngx-avatars{
+   /* // align-items: flex-end; */
     display: flex;
     justify-content: end;
  }
+
+ 
 .ui {
     
     display: grid;
@@ -76,7 +79,7 @@
 
 .list footer button:hover {
  cursor: pointer;
- color:grey;
+ /* color:grey; */
  
 }
  
@@ -143,6 +146,11 @@
 
 .col-md-4  {
     font-weight: bold;
+}
+
+.dropdown-toggle:empty::after {
+    margin-left: 0;
+    margin-bottom: 10px !important;
 }
 
  

@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MembreProjet } from '../../../models/MembreProjet.models';
 import { MembreProjetServiceService } from '../../../services/MembreProjet/membre-projet-service.service';
 import { AddGestionnaireComponent } from '../add-gestionnaire/add-gestionnaire.component';
+import { EnvironmentUrlService } from '../../../services/environment-url.service';
 
 @Component({
   selector: 'app-projet-list',
@@ -21,7 +22,7 @@ export class ProjetListComponent implements OnInit {
   constructor (public repository: ProjetServceService,private modalActive: BsModalService,
     private toastrService: ToastrService,private modalStatus: BsModalService,
     private  cookieService: CookieService  , private router: Router,
-    public repositoryMembre: MembreProjetServiceService ) {}
+    public repositoryMembre: MembreProjetServiceService, private envUrl : EnvironmentUrlService ) {}
   modalRef: BsModalRef | undefined;
   moedlrefStatus : BsModalRef | undefined;
   p: number = 1;
@@ -39,7 +40,7 @@ export class ProjetListComponent implements OnInit {
   }
 
   public createImgPath = (serverPath: string) => { 
-    return `http://localhost:15533/${serverPath}`; 
+    return this.envUrl.urlAddress+`/${serverPath}`; 
   }
 
   AddProjet() {

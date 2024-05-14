@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServicesService } from '../Component/login/login-services.service';
 import { ProjetServceService } from '../services/Projet/projet-servce.service';
+import { EnvironmentUrlService } from '../services/environment-url.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent  implements OnInit {
   role : string | null  =""
   img : string =""
   id : string  | null  ="" ;
-  constructor(public authservice: LoginServicesService, public repositoryProject : ProjetServceService){}
+  constructor(public authservice: LoginServicesService, public repositoryProject : ProjetServceService,  private envUrl : EnvironmentUrlService ,){}
   ngOnInit(): void {
     this.name= localStorage.getItem('nom')  ; 
     this.prenom= localStorage.getItem('prenom')  ; 
@@ -28,7 +29,7 @@ export class HeaderComponent  implements OnInit {
   }
 
   public createImgPath = (serverPath: string) => { 
-    return `http://localhost:15533/${localStorage .getItem('img')}`; 
+    return this.envUrl.urlAddress+`/${localStorage .getItem('img')}`; 
   }
 
   addtolocalstorage(id : Number) {

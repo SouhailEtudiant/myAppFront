@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { MembreProjetServiceService } from '../../../services/MembreProjet/membre-projet-service.service';
+import { EnvironmentUrlService } from '../../../services/environment-url.service';
 
 @Component({
   selector: 'app-projet-list-for-user',
@@ -15,7 +16,7 @@ export class ProjetListForUserComponent implements OnInit {
 
   constructor (public repository: ProjetServceService,private modalActive: BsModalService,
     private toastrService: ToastrService,private modalStatus: BsModalService,
-    private  cookieService: CookieService  , private router: Router,
+    private  cookieService: CookieService  , private router: Router,  private envUrl : EnvironmentUrlService ,
     public repositoryMembre: MembreProjetServiceService ) {}
   modalRef: BsModalRef | undefined;
   moedlrefStatus : BsModalRef | undefined;
@@ -33,7 +34,8 @@ export class ProjetListForUserComponent implements OnInit {
    
   }
 
+
   public createImgPath = (serverPath: string) => { 
-    return `http://localhost:15533/${serverPath}`; 
+    return this.envUrl.urlAddress+`/${serverPath}`; 
   }
 }
