@@ -67,6 +67,7 @@ export class DashboardUserComponent implements OnInit {
   tacheEnCours: Number[]= [];
   tacheTermine: Number[]= [];
   tacheBug: Number[]= [];
+  role : string | null  =""
   constructor( private  cookieService: CookieService, private router: Router, private http: HttpClient
     , private envUrl: EnvironmentUrlService, 
   ){}
@@ -82,11 +83,13 @@ export class DashboardUserComponent implements OnInit {
   }  
   ngOnInit()
   {
+    this.role= localStorage.getItem('role')  ; 
    this.cookieValue = this.cookieService.get('X-Access-Token');
+   this.role= localStorage.getItem('role')  ; 
    if ( this.cookieValue=="")
    {
      this.router.navigate(["/login"]) ; 
-   }
+   } else if (this.role == "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
    else { this.getData();this.getDashboardMultiLine();this.getNumberOfUserByProject ();}
   
  }

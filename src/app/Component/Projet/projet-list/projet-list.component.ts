@@ -28,13 +28,17 @@ export class ProjetListComponent implements OnInit {
   p: number = 1;
   searchText: string ="";
   clicked=false ;
-  cookieValue : string ="" ; 
+  cookieValue : string ="" ;
+  role : string | null  =""  
   ngOnInit(): void {
     this.cookieValue = this.cookieService.get('X-Access-Token');
+    this.role= localStorage.getItem('role')  ; 
     if ( this.cookieValue=="")
     {
       this.router.navigate(["/login"]) ; 
     }
+    else if (this.role != "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
+ 
     else { this.repository.getProjet();}
    
   }

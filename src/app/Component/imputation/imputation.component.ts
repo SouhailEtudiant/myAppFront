@@ -34,6 +34,7 @@ selecteddate: any;
 idUtilisateur="";
 datess! : Date;
 datessString="";
+role : string | null  =""
   constructor (
     @Inject(LOCALE_ID) public locale: string,public repository: ImputationService,
     private toastrService: ToastrService,
@@ -56,11 +57,12 @@ datessString="";
     
   ngOnInit()
    {
+    this.role= localStorage.getItem('role')  ; 
     this.cookieValue = this.cookieService.get('X-Access-Token');
     if ( this.cookieValue=="")
     {
       this.router.navigate(["/login"]) ; 
-    }
+    } else if (this.role == "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
     else { this.getData();}
    
   }

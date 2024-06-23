@@ -12,6 +12,7 @@
 
   <!-- background-repeat: no-repeat;  -->
     <div class="pcoded-content">
+
 		<div class="page-header">
 			<div class="page-block">
 			<div class="row align-items-center">
@@ -40,8 +41,10 @@
 			</div>
 			</div>
 			</div>
+
+
 	<div class="lists" style="overflow-y: hidden;">
-        
+		
 		<div class="list" *ngFor="let list of repository.tacheBoardProject">
 			<header> 
 				 
@@ -52,8 +55,13 @@
 					{{item.tacheTitre}}
 					<div>
 			<ngx-avatars name="{{item.nom}} {{item.prenom}}" size=30   [style]="customStyle" title="{{item.nom}} {{item.prenom}}" > </ngx-avatars>
-			<i class="fas fa-stopwatch" style="color: red;"></i>&nbsp;  &nbsp; 
-			<i class="fas fa-battery-full" style="color:green"></i>
+			<i *ngIf="item.retard=='1'" class="fas fa-stopwatch" style="color: green;" title="Encore de temps"></i>
+			<i *ngIf="item.retard=='-1'" class="fas fa-stopwatch" style="color: red;" title="Tache en retard"></i> 
+			<i *ngIf="item.retard=='0'" class="fas fa-stopwatch" style="color: blue;" title="Tache:C'est le jour"></i>&nbsp;  &nbsp; 
+			<i *ngIf="item.prioriteLabel=='BASSE'" class="fas fa-battery-quarter" style="color:green" title="Priorité basse"></i>
+			<i *ngIf="item.prioriteLabel=='MOYENNE'" class="fas fa-battery-half" style="color:green" title="Priorité moyenne"></i>
+			<i *ngIf="item.prioriteLabel=='HAUTE'" class="fas fa-battery-three-quarters" style="color:rgb(199, 199, 6)" title="Priorité haute"></i>
+			<i *ngIf="item.prioriteLabel=='URGENT'" class="fas fa-battery-full" style="color:red" title="Priorité urgent"></i>
 				</div>
 				</li>     
 			</ul>
@@ -62,7 +70,9 @@
 				<button style="border-color: transparent; background-color: transparent;" (click)="ConfirmModal(templateChangeStatus, list.idStatus)"><i class="fa fa-plus"> Ajouter une tache</i> </button>
 			</footer>
 		</div>
+
 	</div>
+	
 <!-- -->
 	<div  class="offcanvas offcanvas-end"  data-bs-backdrop="false" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="min-width:600px; overflow:auto"> 
 		 <!-- background-color: #f1f1f1; -->
@@ -523,7 +533,6 @@
    </div>
 </div>
 </div>  
-
 	<ng-template #templateChangeStatus>
 		<div class="modal-header">
 			<h4 class="modal-title pull-left">Ajouter Une Tache</h4>
@@ -590,7 +599,7 @@
 										  </div>
 									   
 										<option value="">-Select-</option>
-										<option *ngFor="let rl of repositoryType.types" [ngValue]="rl.id">
+										<option *ngFor="let rl of repositoryType.typesActive" [ngValue]="rl.id">
 										   {{rl.libelleType}}</option>
 									  </select>
 									  </div>
@@ -672,7 +681,7 @@
 										  </div>
 									   
 										<option value="">-Select-</option>
-										<option *ngFor="let rl of repositoryPriorite.priorities" [ngValue]="rl.id">
+										<option *ngFor="let rl of repositoryPriorite.prioritiesActive" [ngValue]="rl.id">
 										   {{rl.libellePriorite}}</option>
 									  </select>
 									  </div>
@@ -777,7 +786,7 @@
 											<div *ngIf="fSousTache['idType'].errors['required']">Type Obligatoire</div>
 										  </div>	   
 										<option value="">-Select-</option>
-										<option *ngFor="let rl of repositoryType.types" [ngValue]="rl.id">
+										<option *ngFor="let rl of repositoryType.typesActive" [ngValue]="rl.id">
 										   {{rl.libelleType}}</option>
 									  </select>
 									  </div>
@@ -834,7 +843,7 @@
 										  </div>
 									   
 										<option value="">-Select-</option>
-										<option *ngFor="let rl of repositoryPriorite.priorities" [ngValue]="rl.id">
+										<option *ngFor="let rl of repositoryPriorite.prioritiesActive" [ngValue]="rl.id">
 										   {{rl.libellePriorite}}</option>
 									  </select>
 									  </div>
@@ -881,7 +890,8 @@
 			<h4 class="modal-title pull-left">Modifier Status</h4>
 			<!-- <button type="button" class="close pull-right" aria-label="Close" > -->
 				<button class="pull-right" style="border: none;">
-					<i class="fa fa-window-close" aria-hidden="true" (click)="modalRef.hide()"></i>
+					<i class="fa fa-window-close" aria-hidden="true" (click)="this.modalRefUpdateStatus.hide();
+					"></i>
 				  </button>
 			<!-- </button> -->
 			<!-- <div class="pull-right" >
@@ -920,7 +930,8 @@
 		  </div>
 		  </div>
 	  </ng-template>
-
+	  
+	
 
 
 	   

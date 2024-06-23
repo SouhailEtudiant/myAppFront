@@ -21,6 +21,7 @@ export class ParamTypeService {
 
 
   types: ParamType[]= [];
+  typesActive: ParamType[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
   ) { }
@@ -41,7 +42,13 @@ export class ParamTypeService {
       
     });
   }
-
+  public getTypeActive = () => {
+    return this.http.get<ParamType[]>(this.createCompleteRoute("api/Type/ActiveType", this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: ParamType[]) => {this.typesActive = jou},
+      
+    });
+  }
   public createType = (route: string) => {
     return this.http.post<ParamType>(this.createCompleteRoute(route, this.envUrl.urlAddress), this.form.value, this.generateHeaders());
   }

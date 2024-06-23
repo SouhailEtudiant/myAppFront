@@ -17,6 +17,8 @@ export class LoginServicesService {
     
     
   });
+
+hasRole : boolean = true ;  
   constructor(private http: HttpClient ,
     private  cookieService: CookieService ,  private envUrl: EnvironmentUrlService,private formBuilder: FormBuilder,  private router: Router) { }
 

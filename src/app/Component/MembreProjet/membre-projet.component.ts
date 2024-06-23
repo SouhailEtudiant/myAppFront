@@ -38,7 +38,7 @@ export class MembreProjetComponent {
       });
 
     }
-    
+    role : string | null  =""
   modalRef: BsModalRef | undefined;
   modelRefDelete : BsModalRef | undefined;
   p: number = 1;
@@ -46,13 +46,14 @@ export class MembreProjetComponent {
   clicked=false ;
   cookieValue : string ="" ; 
   ngOnInit(): void {
+    this.role= localStorage.getItem('role')  ; 
     this.cookieValue = this.cookieService.get('X-Access-Token');
     const id = this.route.snapshot.paramMap.get('id');
     let a = Number(id) ;
     if ( this.cookieValue=="")
     {
       this.router.navigate(["/login"]) ; 
-    }
+    } else if (this.role != "Gestionnaire"){this.router.navigate(["/accessDenied"]) }
     else {   this.repository.getMembers(a) ;}
    
   }

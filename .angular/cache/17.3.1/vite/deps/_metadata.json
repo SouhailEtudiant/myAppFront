@@ -1,134 +1,131 @@
 {
-  "hash": "d9c0cdea",
+  "hash": "93e3aa13",
   "configHash": "fa076d64",
-  "lockfileHash": "6cac1ee1",
-  "browserHash": "4f7a00e1",
+  "lockfileHash": "74198dc6",
+  "browserHash": "b8095923",
   "optimized": {
     "@angular/cdk/drag-drop": {
       "src": "../../../../../node_modules/@angular/cdk/fesm2022/drag-drop.mjs",
       "file": "@angular_cdk_drag-drop.js",
-      "fileHash": "478ad128",
+      "fileHash": "fa0b8e72",
       "needsInterop": false
     },
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "6bcf58c3",
+      "fileHash": "8d026de1",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "0f43e77e",
+      "fileHash": "befcacb3",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "41fb240b",
+      "fileHash": "06efbb29",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "fdd804bf",
+      "fileHash": "35364ce7",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "a210ed04",
+      "fileHash": "9608fbd5",
       "needsInterop": false
     },
     "@angular/platform-browser/animations": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/animations.mjs",
       "file": "@angular_platform-browser_animations.js",
-      "fileHash": "a9836564",
+      "fileHash": "ee46b6c1",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "2393b8fb",
+      "fileHash": "eb0994a0",
       "needsInterop": false
     },
     "@fullcalendar/angular": {
       "src": "../../../../../node_modules/@fullcalendar/angular/fesm2020/fullcalendar-angular.mjs",
       "file": "@fullcalendar_angular.js",
-      "fileHash": "5eb18513",
+      "fileHash": "c575998b",
       "needsInterop": false
     },
     "@fullcalendar/daygrid": {
       "src": "../../../../../node_modules/@fullcalendar/daygrid/index.js",
       "file": "@fullcalendar_daygrid.js",
-      "fileHash": "e0a997c5",
+      "fileHash": "904617a8",
       "needsInterop": false
     },
     "@fullcalendar/interaction": {
       "src": "../../../../../node_modules/@fullcalendar/interaction/index.js",
       "file": "@fullcalendar_interaction.js",
-      "fileHash": "4c63d59d",
-      "needsInterop": false
-    },
-    "ngx-avatars": {
-      "src": "../../../../../node_modules/ngx-avatars/fesm2022/ngx-avatars.mjs",
-      "file": "ngx-avatars.js",
-      "fileHash": "ea4c8817",
-      "needsInterop": false
-    },
-    "ngx-bootstrap/datepicker": {
-      "src": "../../../../../node_modules/ngx-bootstrap/datepicker/fesm2022/ngx-bootstrap-datepicker.mjs",
-      "file": "ngx-bootstrap_datepicker.js",
-      "fileHash": "38ec431a",
-      "needsInterop": false
-    },
-    "ngx-bootstrap/modal": {
-      "src": "../../../../../node_modules/ngx-bootstrap/modal/fesm2022/ngx-bootstrap-modal.mjs",
-      "file": "ngx-bootstrap_modal.js",
-      "fileHash": "922e4aa4",
-      "needsInterop": false
-    },
-    "ngx-cookie-service": {
-      "src": "../../../../../node_modules/ngx-cookie-service/fesm2022/ngx-cookie-service.mjs",
-      "file": "ngx-cookie-service.js",
-      "fileHash": "83e0027a",
-      "needsInterop": false
-    },
-    "ngx-drag-drop": {
-      "src": "../../../../../node_modules/ngx-drag-drop/fesm2022/ngx-drag-drop.mjs",
-      "file": "ngx-drag-drop.js",
-      "fileHash": "a33d448d",
-      "needsInterop": false
-    },
-    "ngx-moment": {
-      "src": "../../../../../node_modules/ngx-moment/fesm2020/ngx-moment.mjs",
-      "file": "ngx-moment.js",
-      "fileHash": "20204d98",
-      "needsInterop": false
-    },
-    "ngx-pagination": {
-      "src": "../../../../../node_modules/ngx-pagination/fesm2020/ngx-pagination.mjs",
-      "file": "ngx-pagination.js",
-      "fileHash": "37d1a81e",
-      "needsInterop": false
-    },
-    "ngx-toastr": {
-      "src": "../../../../../node_modules/ngx-toastr/fesm2022/ngx-toastr.mjs",
-      "file": "ngx-toastr.js",
-      "fileHash": "99fef82d",
+      "fileHash": "780671a2",
       "needsInterop": false
     },
     "ng-apexcharts": {
       "src": "../../../../../node_modules/ng-apexcharts/fesm2020/ng-apexcharts.mjs",
       "file": "ng-apexcharts.js",
-      "fileHash": "d208a7c9",
+      "fileHash": "45dadcc0",
+      "needsInterop": false
+    },
+    "ngx-avatars": {
+      "src": "../../../../../node_modules/ngx-avatars/fesm2022/ngx-avatars.mjs",
+      "file": "ngx-avatars.js",
+      "fileHash": "26751226",
+      "needsInterop": false
+    },
+    "ngx-bootstrap/datepicker": {
+      "src": "../../../../../node_modules/ngx-bootstrap/datepicker/fesm2022/ngx-bootstrap-datepicker.mjs",
+      "file": "ngx-bootstrap_datepicker.js",
+      "fileHash": "1c40daf7",
+      "needsInterop": false
+    },
+    "ngx-bootstrap/modal": {
+      "src": "../../../../../node_modules/ngx-bootstrap/modal/fesm2022/ngx-bootstrap-modal.mjs",
+      "file": "ngx-bootstrap_modal.js",
+      "fileHash": "54947f09",
+      "needsInterop": false
+    },
+    "ngx-cookie-service": {
+      "src": "../../../../../node_modules/ngx-cookie-service/fesm2022/ngx-cookie-service.mjs",
+      "file": "ngx-cookie-service.js",
+      "fileHash": "fd63dd31",
+      "needsInterop": false
+    },
+    "ngx-drag-drop": {
+      "src": "../../../../../node_modules/ngx-drag-drop/fesm2022/ngx-drag-drop.mjs",
+      "file": "ngx-drag-drop.js",
+      "fileHash": "4308dab5",
+      "needsInterop": false
+    },
+    "ngx-moment": {
+      "src": "../../../../../node_modules/ngx-moment/fesm2020/ngx-moment.mjs",
+      "file": "ngx-moment.js",
+      "fileHash": "7a782180",
+      "needsInterop": false
+    },
+    "ngx-pagination": {
+      "src": "../../../../../node_modules/ngx-pagination/fesm2020/ngx-pagination.mjs",
+      "file": "ngx-pagination.js",
+      "fileHash": "97de0b88",
+      "needsInterop": false
+    },
+    "ngx-toastr": {
+      "src": "../../../../../node_modules/ngx-toastr/fesm2022/ngx-toastr.mjs",
+      "file": "ngx-toastr.js",
+      "fileHash": "d5fffd5b",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-GABL4AEL": {
-      "file": "chunk-GABL4AEL.js"
-    },
     "chunk-AASK5FAJ": {
       "file": "chunk-AASK5FAJ.js"
     },
@@ -149,6 +146,9 @@
     },
     "chunk-NENW2CBS": {
       "file": "chunk-NENW2CBS.js"
+    },
+    "chunk-GABL4AEL": {
+      "file": "chunk-GABL4AEL.js"
     },
     "chunk-PZQZAEDH": {
       "file": "chunk-PZQZAEDH.js"

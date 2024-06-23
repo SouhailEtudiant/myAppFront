@@ -69,7 +69,7 @@ export class DashboardV1Component implements OnInit  {
   @ViewChild("chart") chartsPie: ChartComponent | undefined;
   public chartOptionsPie: Partial<ChartOptions> | any;
  
-
+ role : string | null  =""
   cookieValue : string ="" ; 
   imp: nombreUtilisateur[]= [];
   nombreMembre: dashboard[]= [];
@@ -230,11 +230,18 @@ export class DashboardV1Component implements OnInit  {
 ngOnInit()
  {
   this.cookieValue = this.cookieService.get('X-Access-Token');
+  this.role= localStorage.getItem('role')  ; 
   if ( this.cookieValue=="")
   {
     this.router.navigate(["/login"]) ; 
   }
-  else { this.getData();this.getNumberOfUserByProject();this.getDashboardMultiLine();this.chartPie()}
+  else if (this.role != "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
+  else { 
+     
+    this.getData();this.getNumberOfUserByProject();this.getDashboardMultiLine();this.chartPie()
+     
+  }
+
  
 }
 

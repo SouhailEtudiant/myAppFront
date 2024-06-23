@@ -18,5 +18,6 @@ export interface TacheDTO {
     typeLabel: string,
     idProjet: number,
     titreProjet: string,
-    idTacheParent: number
+    idTacheParent: number,
+    retard : string
 }
