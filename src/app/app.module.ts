@@ -51,6 +51,7 @@ import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.co
 import { AddmembreProjetComponent } from './Component/MembreProjet/addmembre-projet/addmembre-projet.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DashboardUserComponent } from './Component/dashboard-user/dashboard-user.component';
+import { AccessDeniedComponent } from './Component/access-denied/access-denied.component';
  
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { DashboardUserComponent } from './Component/dashboard-user/dashboard-use
    ImputationComponent,
    MembreProjetComponent,
    AddmembreProjetComponent,
-   DashboardUserComponent
+   DashboardUserComponent,
+   AccessDeniedComponent
 
   ],
   imports: [

@@ -17,6 +17,7 @@ import { BoardssComponent } from './Component/bardtest/boardss/boardss.component
 import { ImputationComponent } from './Component/imputation/imputation.component';
 import { MembreProjetComponent } from './Component/MembreProjet/membre-projet.component';
 import { DashboardUserComponent } from './Component/dashboard-user/dashboard-user.component';
+import { AccessDeniedComponent } from './Component/access-denied/access-denied.component';
 
 const routes: Routes = [
   {path : '' , title : 'Login Page' , component:LoginComponent} ,
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path : 'profile' , title : 'Profile Utilisateur' , component:UserProfileComponent} ,
   {path : 'tache' , title : 'Liste Des Taches' , component:TacheListComponent} ,
   {path : 'imputation' , title : 'Liste Des Imputation' , component:ImputationComponent} ,
+  {path : 'accessDenied' , title : 'accessDenied' , component:AccessDeniedComponent} ,
   {path : 'board/:id' , title : 'Liste Des Taches' , component:BoardssComponent} ,
   {path : 'membre/:id' , title : 'Liste Des Membres Projets' , component:MembreProjetComponent} ,
   ];

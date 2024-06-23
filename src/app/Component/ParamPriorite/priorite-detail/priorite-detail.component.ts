@@ -94,7 +94,9 @@ this.clicked =true ;
 
   public  clear ()
 {
-  this.submitted=false; 
+  
+  this.submitted = false;
+  this.clicked =false ; 
   this.repository.resetForm();
 }
 

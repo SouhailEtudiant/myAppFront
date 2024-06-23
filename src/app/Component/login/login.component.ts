@@ -58,7 +58,9 @@ myDate: Date = new Date();
          localStorage.setItem('img', res.img);
          localStorage.setItem('username', res.username);
          localStorage.setItem('id', res.id);
+         if(localStorage.getItem('role')=="Adminstrateur")
         this.router.navigate(["/dashboard"]) ;
+      else  this.router.navigate(["/dashboardUser"]) ;
         this.clicked =false ;
       //  localStorage.setItem('token', res.token);
       //  localStorage.setItem('username',  res.username);

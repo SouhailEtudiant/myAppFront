@@ -1,8 +1,4 @@
 import {
-  Calendar,
-  CustomRenderingStore
-} from "./chunk-GABL4AEL.js";
-import {
   CommonModule,
   NgClass,
   NgForOf,
@@ -41,6 +37,10 @@ import {
   ɵɵtemplate,
   ɵɵviewQuery
 } from "./chunk-NENW2CBS.js";
+import {
+  Calendar,
+  CustomRenderingStore
+} from "./chunk-GABL4AEL.js";
 import {
   __spreadValues
 } from "./chunk-PZQZAEDH.js";

@@ -23,14 +23,17 @@ export class RoleListComponent implements OnInit {
   searchText: string ="";
   clicked=false ;
   cookieValue : string ="" ; 
+     role : string | null  =""
   ngOnInit(): void {
     this.cookieValue = this.cookieService.get('X-Access-Token');
+    this.role= localStorage.getItem('role')  ; 
     if ( this.cookieValue=="")
     {
       this.router.navigate(["/login"]) ; 
     }
+    
+    else if (this.role != "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
     else { this.repository.getRoles();}
-   
   }
 
   AddRole() {

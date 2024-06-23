@@ -19,6 +19,7 @@ import { AbstractControl } from '@angular/forms';
 import { CommServiceService } from '../../../services/Commentaire/comm-service.service';
 import { commentaire } from '../../../models/Commentaire.models';
 import { EnvironmentUrlService } from '../../../services/environment-url.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-boardss',
@@ -38,6 +39,7 @@ export class BoardssComponent implements OnInit {
     
  };
  myDate = new Date();
+ role : string | null  =""
  selected_user = ''; 
    
  
@@ -46,6 +48,7 @@ export class BoardssComponent implements OnInit {
  private  cookieService: CookieService  , private router: Router,
  private modalActive: BsModalService,
  private modalDelete: BsModalService,
+ private modalLoader: BsModalService,
  private route: ActivatedRoute,
     public repositoryUser: UserService,
     public repositoryPriorite: ParamPrioriteServiceService,
@@ -61,12 +64,19 @@ export class BoardssComponent implements OnInit {
      private modalActiveUpdateStatus: BsModalService,
      public modalRefUpdateStatus: BsModalRef,
      public modelRefDelete: BsModalRef,
-     private envUrl : EnvironmentUrlService 
+     public modelRefLoader: BsModalRef,
+     private envUrl : EnvironmentUrlService ,
+   
+
 ) {
+
+
+  //this.currDate=this.datePipe.transform(this.currDate, 'yyyy-MM-dd');
   router.events.forEach((event) => {
     if(event instanceof NavigationEnd) {
       console.log(this.route.snapshot.paramMap.get('id'))
       this.repository.getTacheBoardParProjet( Number(this.route.snapshot.paramMap.get('id')),"") ;
+    
     }
     
   });
@@ -77,14 +87,16 @@ export class BoardssComponent implements OnInit {
     this.cookieValue = this.cookieService.get('X-Access-Token');
     const id = this.route.snapshot.paramMap.get('id');
     let a = Number(id) ;
+    this.role= localStorage.getItem('role')  ; 
     if ( this.cookieValue=="")
     {
       this.router.navigate(["/login"]) ; 
     }
+    else if (this.role == "Adminstrateur"){this.router.navigate(["/accessDenied"]) }
     else { 
        
         this.repository.getTacheBoardParProjet(a,"") ; this.repositoryUser.getusers()
-    
+       
     }
   
   }
@@ -100,7 +112,7 @@ export class BoardssComponent implements OnInit {
       .subscribe({
         
         next: () => {
-          this.toastrService.success("Deleted","Imputation Supprimé avec success") ;
+          this.toastrService.success("Deleted","Commentaire Supprimé avec success") ;
           this.repositoryComm.getComms(idTache);
           this.modalDelete.hide();
         //  this.reset()
@@ -120,9 +132,9 @@ export class BoardssComponent implements OnInit {
       this.submitted = false;
 
       this.repository.resetForm(); 
-      this.repositoryPriorite.getPriorites();
-      this.repositoryStatus.getStatus() ;
-      this.repositoryType.getType(); 
+      this.repositoryPriorite.getPrioritesActive();
+      this.repositoryStatus.getStatusActive() ;
+      this.repositoryType.getTypeActive(); 
       this.repositoryUser.getusers() ;
       this.repositoryProjet.getProjet();
       this.repository.form.controls['idStatus'].setValue(id) ; 
@@ -237,9 +249,9 @@ export class BoardssComponent implements OnInit {
     }
   }
   ConfirmModalSousTache(template: TemplateRef<any> , id : Number , idStatus :Number) {
-    this.repositoryPriorite.getPriorites();
-    this.repositoryStatus.getStatus() ;
-    this.repositoryType.getType(); 
+    this.repositoryPriorite.getPrioritesActive();
+    this.repositoryStatus.getStatusActive() ;
+    this.repositoryType.getTypeActive(); 
     this.repositoryUser.getusers() ;
     this.repositoryProjet.getProjet();
     this.submitted = false;
@@ -349,7 +361,10 @@ public  clearSousTache ()
 }
 
 
-
+public loader (template: TemplateRef<any>)
+{
+this.modelRefLoader = this.modalLoader.show(template, { class: 'modal-dialog-centered modal-sm', ignoreBackdropClick: true  });
+}
 
 
 

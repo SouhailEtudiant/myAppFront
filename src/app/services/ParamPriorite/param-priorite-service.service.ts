@@ -20,6 +20,7 @@ export class ParamPrioriteServiceService {
 
 
   priorities: ParamPriorite[]= [];
+  prioritiesActive: ParamPriorite[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
   ) { }
@@ -37,6 +38,14 @@ export class ParamPrioriteServiceService {
     return this.http.get<ParamPriorite[]>(this.createCompleteRoute("api/Priorite", this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: ParamPriorite[]) => {this.priorities = jou},
+      
+    });
+  }
+
+  public getPrioritesActive = () => {
+    return this.http.get<ParamPriorite[]>(this.createCompleteRoute("api/Priorite/ActivePriorite", this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: ParamPriorite[]) => {this.prioritiesActive = jou},
       
     });
   }

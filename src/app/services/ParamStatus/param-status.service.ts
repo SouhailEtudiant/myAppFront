@@ -21,6 +21,7 @@ export class ParamStatusService {
 
 
   status: ParamStatus[]= [];
+  statusActive: ParamStatus[]= [];
   constructor(private http: HttpClient ,  private envUrl: EnvironmentUrlService, 
     private  cookieService: CookieService
   ) { }
@@ -38,6 +39,14 @@ export class ParamStatusService {
     return this.http.get<ParamStatus[]>(this.createCompleteRoute("api/Status", this.envUrl.urlAddress), this.generateHeaders())
     .subscribe({
       next: (jou: ParamStatus[]) => {this.status = jou},
+      
+    });
+  }
+
+  public getStatusActive = () => {
+    return this.http.get<ParamStatus[]>(this.createCompleteRoute("api/Status/ActiveStatus", this.envUrl.urlAddress), this.generateHeaders())
+    .subscribe({
+      next: (jou: ParamStatus[]) => {this.statusActive = jou},
       
     });
   }
